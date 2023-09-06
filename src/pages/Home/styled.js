@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 export const Wrapper = styled.section`
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,6 +16,26 @@ export const Wrapper = styled.section`
   }
   .title-img {
     width: auto;
+  }
+  img:not(.title-img) {
+    animation: drawCircle 5s linear infinite;
+  }
+  @keyframes drawCircle {
+    0% {
+      transform: translateX(0) translateY(0);
+    }
+    25% {
+      transform: translateX(5px) translateY(5px);
+    }
+    50% {
+      transform: translateX(10px) translateY(0);
+    }
+    75% {
+      transform: translateX(5px) translateY(-5px);
+    }
+    100% {
+      transform: translateX(0) translateY(0);
+    }
   }
 `;
 

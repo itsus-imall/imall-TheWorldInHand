@@ -10,6 +10,7 @@
   --font-size-big: 2rem;
   --font-size-sm: 0.75rem;
   --wrapper-padding: 1.25rem;
+  --vh: 100%;
 }
 
 html,
