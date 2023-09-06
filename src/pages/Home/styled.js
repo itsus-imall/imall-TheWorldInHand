@@ -1,12 +1,13 @@
 import { styled } from 'styled-components';
 
 export const Wrapper = styled.section`
-  height: calc(var(--vh, 1vh) * 100);
+  margin-top: 44px;
+  height: calc(var(--vh, 1vh) * 100 - 44px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: calc(var(--vh, 1vh) * 1.5);
   text-align: center;
   color: var(--text-color);
   box-sizing: border-box;
@@ -17,32 +18,12 @@ export const Wrapper = styled.section`
   .title-img {
     width: auto;
   }
-  img:not(.title-img) {
-    animation: drawCircle 5s linear infinite;
-  }
-  @keyframes drawCircle {
-    0% {
-      transform: translateX(0) translateY(0);
-    }
-    25% {
-      transform: translateX(5px) translateY(5px);
-    }
-    50% {
-      transform: translateX(10px) translateY(0);
-    }
-    75% {
-      transform: translateX(5px) translateY(-5px);
-    }
-    100% {
-      transform: translateX(0) translateY(0);
-    }
-  }
 `;
 
 export const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: calc(var(--vh, 1vh) * 1.5);
   h2 {
     font-size: var(--font-size-big);
   }
@@ -53,10 +34,47 @@ export const TitleWrapper = styled.div`
   }
 `;
 
+export const ImgWrapper = styled.div`
+  position: relative;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
+  img:last-child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    animation: drawCircle 10s linear infinite;
+  }
+  img:first-child {
+    position: relative;
+    z-index: 2;
+  }
+  @keyframes drawCircle {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    }
+    25% {
+      transform: translate(-50%, -50%) rotate(90deg) scale(0.8);
+    }
+    50% {
+      transform: translate(-50%, -50%) rotate(180deg) scale(1);
+    }
+    75% {
+      transform: translate(-50%, -50%) rotate(270deg) scale(1.2);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg) scale(1);
+    }
+  }
+`;
+
 export const ButtonWrapper = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: calc(var(--vh, 1vh) * 3);
   h2 {
     font-size: var(--font-size-md);
     font-weight: 500;
@@ -76,7 +94,7 @@ export const ButtonWrapper = styled.form`
     font-weight: bold;
     display: block;
     padding: var(--wrapper-padding);
-    border-radius: var(--wrapper-padding);
+    border-radius: var(--font-size-big);
     font-size: var(--font-size-md);
     border: 0;
   }

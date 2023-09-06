@@ -7,7 +7,7 @@
   --text-color-purple: #b174ff;
   --font-size-root: 16px;
   --font-size-md: 1rem;
-  --font-size-big: 2rem;
+  --font-size-big: 2.5rem;
   --font-size-sm: 0.75rem;
   --wrapper-padding: 1.25rem;
   --vh: 100%;
@@ -149,4 +149,12 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+nav {
+  height: 44px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #fff;
+  width: 100%;
 }

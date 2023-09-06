@@ -31,11 +31,14 @@ const App = () => {
   }, []);
 
   return (
-    <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/testing' element={<Testing />} />
-      <Route path='/Result' element={<Result />} />
-    </Routes>
+    <>
+      <nav></nav>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/testing' element={<Testing />} />
+        <Route path='/Result' element={<Result />} />
+      </Routes>
+    </>
   );
 };
 

@@ -34,7 +34,10 @@ const Home = () => {
         <h2>손 안의 세상</h2>
         <h3>당신을 위한 맞춤 테스트</h3>
       </S.TitleWrapper>
-      <img src='/images/메인페이지/메인페이지_시안1_로봇.jpg' alt='로봇' />
+      <S.ImgWrapper>
+        <img src='/images/메인페이지/메인페이지_시안1_로봇.png' alt='로봇' />
+        <img src='/images/메인페이지/메인페이지_시안1_문양.png' alt='문양' />
+      </S.ImgWrapper>
       <S.ButtonWrapper>
         <h2>당신의 손에 딱 맞춘 상품을 AI가 추천해드릴게요</h2>
         {imallId ? (
@@ -43,7 +46,7 @@ const Home = () => {
           <button>로그인 하기</button>
         )}
         <p>
-          버튼 클릭 시 <span>개인 정보 제공 및 취급 동의</span> 한것으로 처리
+          버튼 클릭 시 <span>개인 정보 제공 및 취급 동의</span> 한 것으로 처리
           됩니다.
         </p>
       </S.ButtonWrapper>
