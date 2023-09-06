@@ -77,5 +77,7 @@ export const ButtonWrapper = styled.form`
     display: block;
     padding: var(--wrapper-padding);
     border-radius: var(--wrapper-padding);
+    font-size: var(--font-size-md);
+    border: 0;
   }
 `;

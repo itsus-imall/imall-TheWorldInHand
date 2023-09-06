@@ -5,13 +5,31 @@ import Result from './pages/Result';
 import { useEffect } from 'react';
 
 const App = () => {
-  function setScreenSize() {
+  const setScreenSize = () => {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
-  }
+  };
+
   useEffect(() => {
     setScreenSize();
-  });
+    let timeoutId;
+    const handleResize = () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setTimeout(() => {
+        setScreenSize();
+      }, 300);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <Routes>
       <Route path='/' element={<Home />} />
