@@ -1,8 +1,9 @@
-import { Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import Testing from './pages/Testing';
 import Result from './pages/Result';
-import { useEffect } from 'react';
+import Question from './components/Question';
 
 const App = () => {
   const setScreenSize = () => {
@@ -33,11 +34,15 @@ const App = () => {
   return (
     <>
       <nav></nav>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/testing' element={<Testing />} />
-        <Route path='/Result' element={<Result />} />
-      </Routes>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/testing' element={<Testing />}>
+            <Route path=':type' element={<Question />} />
+          </Route>
+          <Route path='/result' element={<Result />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 };

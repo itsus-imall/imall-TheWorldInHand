@@ -1,29 +1,47 @@
 import { styled } from 'styled-components';
 
 export const Wrapper = styled.section`
+  width: 100%;
   margin-top: 44px;
   height: calc(var(--vh, 1vh) * 100 - 44px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: calc(var(--vh, 1vh) * 1.5);
+  justify-content: space-around;
   text-align: center;
   color: var(--text-color);
   box-sizing: border-box;
   padding: var(--wrapper-padding);
+  overflow: hidden;
   img {
     width: 100%;
   }
-  .title-img {
-    width: auto;
+  @media screen and (min-width: 500px) {
+    max-width: 500px;
+    margin: 44px auto 0 auto;
+  }
+  @media screen and (min-width: 800px) {
+    max-width: 800px;
+  }
+  @media screen and (min-height: 1000px) {
+    max-height: 1000px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 0;
   }
 `;
 
 export const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: calc(var(--vh, 1vh) * 1.5);
+  img {
+    width: 30%;
+  }
   h2 {
     font-size: var(--font-size-big);
   }
@@ -36,7 +54,6 @@ export const TitleWrapper = styled.div`
 
 export const ImgWrapper = styled.div`
   position: relative;
-  overflow: hidden;
   img {
     width: 100%;
   }
@@ -54,19 +71,19 @@ export const ImgWrapper = styled.div`
   }
   @keyframes drawCircle {
     0% {
-      transform: translate(-50%, -50%) rotate(0deg) scale(1);
+      transform: translate(-50%, -50%) rotate(0deg) scale(0.8);
     }
     25% {
-      transform: translate(-50%, -50%) rotate(90deg) scale(0.8);
+      transform: translate(-50%, -50%) rotate(90deg) scale(1);
     }
     50% {
-      transform: translate(-50%, -50%) rotate(180deg) scale(1);
+      transform: translate(-50%, -50%) rotate(180deg) scale(0.8);
     }
     75% {
-      transform: translate(-50%, -50%) rotate(270deg) scale(1.2);
+      transform: translate(-50%, -50%) rotate(270deg) scale(1);
     }
     100% {
-      transform: translate(-50%, -50%) rotate(360deg) scale(1);
+      transform: translate(-50%, -50%) rotate(360deg) scale(0.8);
     }
   }
 `;

@@ -12,6 +12,16 @@
   --wrapper-padding: 1.25rem;
   --vh: 100%;
 }
+@media screen and (min-width: 800px) {
+  :root {
+    --font-size-root: 20px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  :root {
+    --font-size-root: 24px;
+  }
+}
 
 html,
 body,
