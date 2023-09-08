@@ -3,7 +3,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import Testing from './pages/Testing';
 import Result from './pages/Result';
-import Question from './components/Question';
+import ModelQuestion from './components/ModelQuestion';
 
 const App = () => {
   const setScreenSize = () => {
@@ -38,7 +38,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/testing' element={<Testing />}>
-            <Route path=':type' element={<Question />} />
+            <Route path='model' element={<ModelQuestion />} />
           </Route>
           <Route path='/result' element={<Result />} />
         </Routes>

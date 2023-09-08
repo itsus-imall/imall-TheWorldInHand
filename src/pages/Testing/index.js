@@ -3,33 +3,62 @@ import { getQuestion } from '../../services/apis';
 
 import * as S from './styled';
 import Progress from '../../components/Progress';
-import { Outlet } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useEffect, useReducer, useState } from 'react';
+
+const questionReducer = (state, action) => {
+  switch (action.type) {
+    case 'DATA_FETCH':
+      return { ...state, data: action.payload };
+    case 'FILTER':
+      const { count, question } = filter(state);
+      return { ...state, count, question };
+    default:
+      return;
+  }
+};
+
+const initalState = {
+  count: 0,
+  data: null,
+  question: {
+    title: '사용하는 제품을 선택해 주세요.',
+    question: ['sumsung', 'apple'],
+  },
+};
+
+const filter = ({ count, data }) => {
+  const question = data;
+  count += 1;
+  return { count, question };
+};
 
 const Testing = () => {
-  const { isLoading, error, data } = useQuery(['question'], getQuestion);
-  const [pageCount, setPageCount] = useState(0);
-
-  const onSubmit = event => {
-    event.preventDefault();
-    setPageCount(prev => ++prev);
-  };
-
-  const filter = () => {
-    if (isLoading) return;
-    console.log(pageCount);
-    console.log(Object.keys(data));
-  };
-
+  const navigate = useNavigate();
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const { isLoading, data } = useQuery(['question'], getQuestion);
+  const [{ count, question }, dispatch] = useReducer(
+    questionReducer,
+    initalState,
+  );
+  console.log(data);
   useEffect(() => {
-    filter();
-  });
+    if (isLoading) return;
+    dispatch({ type: 'DATA_FETCH', payload: data });
+  }, [data, isLoading]);
+
+  const onClick = () => {
+    dispatch({ type: 'FILTER' });
+    setButtonDisabled(true);
+  };
 
   return (
-    <S.TestWrapper as='form' onSubmit={onSubmit}>
-      <Progress pageCount={pageCount} />
-      <Outlet />
-      <button>asdf</button>
+    <S.TestWrapper>
+      <Progress count={{ count }} />
+      <Outlet context={{ question, setButtonDisabled }} />
+      <button onClick={onClick} disabled={buttonDisabled}>
+        다음
+      </button>
     </S.TestWrapper>
   );
 };
