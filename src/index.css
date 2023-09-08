@@ -11,6 +11,8 @@
   --font-size-sm: 0.75rem;
   --wrapper-padding: 1.25rem;
   --vh: 100%;
+  --input-checked-bg-color: #f3fff3;
+  --input-checked-border-color: #40c89a;
 }
 @media screen and (min-width: 800px) {
   :root {

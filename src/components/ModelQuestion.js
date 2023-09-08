@@ -1,4 +1,5 @@
 import { useOutletContext } from 'react-router-dom';
+import * as S from '../style/questionStyled';
 
 const ModelQuestion = () => {
   const { question: questions, setButtonDisabled } = useOutletContext();
@@ -8,18 +9,27 @@ const ModelQuestion = () => {
     setButtonDisabled(false);
   };
   return (
-    <form onSubmit={onSubmit}>
+    <S.Wrapper>
       {questions.question.map(question => {
         return (
-          <div>
-            <input name='model' key={question} type='radio' value={question} />
-            <label>
-              <img src={`/images/`} alt='model' />
+          <S.InputWrapper>
+            <input
+              id={question}
+              name='model'
+              key={question}
+              type='radio'
+              value={question}
+            />
+            <label htmlFor={question}>
+              <img
+                src={`/images/테스트페이지/260x260_01_${question}.png`}
+                alt='model'
+              />
             </label>
-          </div>
+          </S.InputWrapper>
         );
       })}
-    </form>
+    </S.Wrapper>
   );
 };
 

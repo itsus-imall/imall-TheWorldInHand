@@ -23,7 +23,8 @@ const initalState = {
   data: null,
   question: {
     title: '사용하는 제품을 선택해 주세요.',
-    question: ['sumsung', 'apple'],
+    subTitle: '',
+    question: ['삼성', '애플'],
   },
 };
 
@@ -55,6 +56,10 @@ const Testing = () => {
   return (
     <S.TestWrapper>
       <Progress count={{ count }} />
+      <S.QuestionTitleWrapper>
+        <h2>{question.title}</h2>
+        <p>{question.subTitle}</p>
+      </S.QuestionTitleWrapper>
       <Outlet context={{ question, setButtonDisabled }} />
       <button onClick={onClick} disabled={buttonDisabled}>
         다음
