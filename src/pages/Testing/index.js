@@ -53,6 +53,10 @@ const Testing = () => {
     setButtonDisabled(true);
   };
 
+  const prevBtnClickHandler = () => {
+    navigate(-1);
+  };
+
   return (
     <S.TestWrapper>
       <Progress count={{ count }} />
@@ -61,9 +65,12 @@ const Testing = () => {
         <p>{question.subTitle}</p>
       </S.QuestionTitleWrapper>
       <Outlet context={{ question, setButtonDisabled }} />
-      <button onClick={onClick} disabled={buttonDisabled}>
-        다음
-      </button>
+      <S.NextButtonWrapper>
+        <button onClick={prevBtnClickHandler}>〉</button>
+        <button onClick={onClick} disabled={buttonDisabled}>
+          다음
+        </button>
+      </S.NextButtonWrapper>
     </S.TestWrapper>
   );
 };

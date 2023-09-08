@@ -4,13 +4,13 @@ export const Wrapper = styled.form`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   max-width: 500px;
 `;
 
 export const InputWrapper = styled.div`
   position: relative;
-  flex: 0 0 calc(50% - var(--wrapper-padding));
+  flex: 0 0 calc(50% - var(--wrapper-padding) / 2);
   input {
     position: absolute;
     top: 0.5rem;
@@ -19,7 +19,7 @@ export const InputWrapper = styled.div`
     z-index: 2;
   }
   label {
-    border-radius: 20px;
+    border-radius: var(--font-size-md);
     box-sizing: border-box;
     background: #fff;
     display: block;
@@ -39,36 +39,36 @@ export const InputWrapper = styled.div`
     vertical-align: middle;
     appearance: none;
     border-radius: 50%;
-    width: 1rem;
-    height: 1rem;
+    width: 1.25rem;
+    height: 1.25rem;
   }
   input[type='radio']:checked {
     background: #40c89a;
   }
   input[type='radio']:checked::before {
     content: '';
-    width: 0.2rem;
+    width: 0.3rem;
     height: 1.5px;
     background: #fff;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-100%, -28%) rotate(40deg);
+    transform: translate(-100%, 20%) rotate(40deg);
   }
   input[type='radio']:checked::after {
     content: '';
-    width: 0.4rem;
+    width: 0.5rem;
     height: 1.5px;
     background: #fff;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-20%, -50%) rotate(-40deg);
+    transform: translate(-25%, -50%) rotate(-40deg);
   }
   input:checked + label {
     background: var(--input-checked-bg-color);
     border: 3px solid var(--input-checked-border-color);
-    padding: calc(var(--wrapper-padding) * 1.5 - 12px)
-      calc(var(--wrapper-padding) * 2 - 12px);
+    padding: calc(var(--wrapper-padding) * 1.5 - 0.5rem)
+      calc(var(--wrapper-padding) * 2 - 0.5rem);
   }
 `;

@@ -13,15 +13,12 @@ export const Wrapper = styled.section`
   box-sizing: border-box;
   padding: var(--wrapper-padding);
   overflow: hidden;
+  max-width: 500px;
   img {
     width: 100%;
   }
   @media screen and (min-width: 500px) {
-    max-width: 500px;
     margin: 44px auto 0 auto;
-  }
-  @media screen and (min-width: 800px) {
-    max-width: 800px;
   }
   @media screen and (min-height: 1000px) {
     max-height: 1000px;

@@ -1,8 +1,14 @@
 import React from 'react';
 
-const Progress = React.memo(percent => {
-  console.log('ds');
-  return <div>percent</div>;
-});
+import * as S from '../style/progressStyled';
+
+const Progress = ({ count: { count } }) => {
+  const percent = (100 * count) / 12;
+  return (
+    <S.PercentWrapper>
+      <S.PercentGauge percent={percent} />
+    </S.PercentWrapper>
+  );
+};
 
 export default Progress;
