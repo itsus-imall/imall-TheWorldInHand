@@ -4,9 +4,8 @@ import { Wrapper } from '../Home/styled';
 export const TestWrapper = styled(Wrapper)`
   justify-content: flex-start;
   padding-bottom: calc(var(--wrapper-padding) + 70px);
+  gap: 2rem;
 `;
-
-export const QuestionTitleWrapper = styled.div``;
 
 export const NextButtonWrapper = styled.div`
   width: 100%;
@@ -19,6 +18,9 @@ export const NextButtonWrapper = styled.div`
   box-sizing: border-box;
   padding: 0 var(--wrapper-padding);
   transform: translate(-50%, 0);
+  button:active {
+    transform: scale(0.95);
+  }
   button {
     border: 0;
     padding: 0;
@@ -36,10 +38,15 @@ export const NextButtonWrapper = styled.div`
   button:last-child {
     background: var(--point-color);
   }
+  button:last-child {
+    border-radius: var(--font-size-big);
+    flex: 0 0 80%;
+    background: var(--point-color);
+    color: #fff;
+    font-weight: bold;
+  }
   button:last-child:disabled {
     background: #e9ecef;
     color: #ced4da;
-    border-radius: var(--font-size-big);
-    flex: 0 0 80%;
   }
 `;

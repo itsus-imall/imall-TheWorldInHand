@@ -42,7 +42,7 @@ const Home = () => {
       <S.ButtonWrapper>
         <h2>당신의 손에 딱 맞춘 상품을 AI가 추천해드릴게요</h2>
         {imallId ? (
-          <Link to='testing/model'>시작하기</Link>
+          <Link to='testing/manufacturer'>시작하기</Link>
         ) : (
           <button>로그인 하기</button>
         )}

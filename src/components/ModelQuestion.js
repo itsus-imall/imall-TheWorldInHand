@@ -2,27 +2,30 @@ import { useOutletContext } from 'react-router-dom';
 import * as S from '../style/questionStyled';
 
 const ModelQuestion = () => {
-  const { question: questions, setButtonDisabled } = useOutletContext();
+  const { questions, setButtonDisabled, setSelectedQuestion } =
+    useOutletContext();
 
-  const onSubmit = event => {
-    event.preventDefault();
+  const checkedHandler = event => {
+    setSelectedQuestion([event.target.value]);
     setButtonDisabled(false);
   };
+
   return (
     <S.Wrapper>
-      {questions.question.map(question => {
+      {questions.map(({ value }) => {
         return (
           <S.InputWrapper>
             <input
-              id={question}
+              id={value}
               name='model'
-              key={question}
+              key={value}
               type='radio'
-              value={question}
+              value={value}
+              onChange={checkedHandler}
             />
-            <label htmlFor={question}>
+            <label htmlFor={value}>
               <img
-                src={`/images/테스트페이지/260x260_01_${question}.png`}
+                src={`/images/테스트페이지/260x260_01_${value}.png`}
                 alt='model'
               />
             </label>

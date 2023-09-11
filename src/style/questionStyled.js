@@ -5,12 +5,15 @@ export const Wrapper = styled.form`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: baseline;
   max-width: 500px;
+  overflow: scroll;
+  gap: 1rem;
 `;
 
 export const InputWrapper = styled.div`
   position: relative;
-  flex: 0 0 calc(50% - var(--wrapper-padding) / 2);
+  flex: 0 0 calc(50% - 1rem / 2);
   input {
     position: absolute;
     top: 0.5rem;
@@ -23,12 +26,13 @@ export const InputWrapper = styled.div`
     box-sizing: border-box;
     background: #fff;
     display: block;
-    padding: calc(var(--wrapper-padding) * 1.5) calc(var(--wrapper-padding) * 2);
+    padding: 1rem 3rem;
     transition: 0.3s;
     cursor: pointer;
+    border: 3px solid #fff;
   }
   label:active {
-    transform: scale(0.98);
+    transform: scale(0.95);
   }
   input:checked {
     border: 0;
@@ -68,7 +72,5 @@ export const InputWrapper = styled.div`
   input:checked + label {
     background: var(--input-checked-bg-color);
     border: 3px solid var(--input-checked-border-color);
-    padding: calc(var(--wrapper-padding) * 1.5 - 0.5rem)
-      calc(var(--wrapper-padding) * 2 - 0.5rem);
   }
 `;
