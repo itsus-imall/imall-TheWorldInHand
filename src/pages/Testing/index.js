@@ -8,7 +8,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect, useReducer, useState } from 'react';
 import Title from '../../components/Title';
 
-const a = [
+const questionsObj = [
   {
     contents: {
       title: '사용하는 제품을 선택해 주세요.',
@@ -19,7 +19,6 @@ const a = [
     contents: {
       title: '상세 기종을 선택해 주세요.',
     },
-    questions: [{ value: '삼성' }, { value: '애플' }],
   },
 ];
 
@@ -30,19 +29,16 @@ const questionReducer = (state, action) => {
       return { ...state, data: action.payload };
     case 'NEXT':
       if ([0, 1, 4].includes(state.count)) {
-        questions = filter(
-          state.data,
-          action.payload,
-          state.count === 4 ? true : false,
-        );
+        questions = filter(state.data, action.payload);
+        console.log(questions);
       }
       return {
         ...state,
         history: [...state.history, action.payload],
         count: ++state.count,
         values: {
-          contents: a[state.count].contents,
-          questions: questions ?? a[state.count].questions,
+          contents: questionsObj[state.count].contents,
+          questions: questions ?? questionsObj[state.count].questions,
         },
       };
     default:
@@ -53,57 +49,56 @@ const questionReducer = (state, action) => {
 const initalState = {
   count: 0,
   data: null,
-  values: a[0],
+  values: questionsObj[0],
   history: [],
 };
 
-const filter = (datas, payload, type) => {
-  if (!type) {
-    const keys = Object.keys(datas[payload]).reverse();
-    const newArray = keys.map(key => {
+const filter = (datas, payload) => {
+  let newArray = [];
+  payload.forEach(element => {
+    const keys = Object.keys(datas[element]).map(key => {
       return { value: key };
     });
-    return newArray;
-  }
+    newArray = [...keys];
+  });
+  return newArray;
 };
 
 const Testing = () => {
   const navigate = useNavigate();
-  const [selectedQuestion, setSelectedQuestion] = useState([]);
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const { isLoading, data } = useQuery(['question'], getQuestion);
-  const [{ count, values }, dispatch] = useReducer(
+  const [{ count, values, history }, dispatch] = useReducer(
     questionReducer,
     initalState,
   );
-  console.log(values);
   useEffect(() => {
     if (isLoading) return;
     dispatch({ type: 'DATA_FETCH', payload: data });
   }, [data, isLoading]);
 
   const nextBtnClickHandler = () => {
-    dispatch({ type: 'NEXT', payload: selectedQuestion });
+    const inputs = Array.from(document.querySelectorAll('input'));
+    const checkedInputs = inputs
+      .filter(input => input.checked)
+      .map(input => input.value);
+    console.log(checkedInputs);
+    dispatch({ type: 'NEXT', payload: checkedInputs });
     setButtonDisabled(true);
     navigate('model');
-    setSelectedQuestion([]);
   };
 
   const prevBtnClickHandler = () => {
     navigate(-1);
   };
 
+  const onChange = () => setButtonDisabled(false);
+  console.log(history, values);
   return (
-    <S.TestWrapper>
+    <S.TestWrapper as={'form'} onChange={onChange}>
       <Progress count={{ count }} />
       <Title contents={values.contents} />
-      <Outlet
-        context={{
-          questions: values.questions,
-          setButtonDisabled,
-          setSelectedQuestion,
-        }}
-      />
+      <Outlet context={{ questions: values.questions }} />
       <S.NextButtonWrapper>
         <button onClick={prevBtnClickHandler}>〉</button>
         <button onClick={nextBtnClickHandler} disabled={buttonDisabled}>
