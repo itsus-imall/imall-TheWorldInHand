@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.form`
+export const Wrapper = styled.section`
   width: 100%;
   display: flex;
   flex-wrap: wrap;

@@ -14,12 +14,13 @@ const questionsObj = [
       title: '사용하는 제품을 선택해 주세요.',
     },
     questions: [{ value: '삼성' }, { value: '애플' }],
+    nextURL: 'model',
   },
   {
     contents: {
       title: '상세 기종을 선택해 주세요.',
     },
-    route: 'model',
+    nextURL: 'handShape',
   },
 ];
 
@@ -31,21 +32,33 @@ const questionReducer = (state, action) => {
     case 'NEXT':
       if ([0, 1, 4].includes(state.count)) {
         questions = filter(state.data, action.payload);
-        console.log(questions);
       }
+      const history = historyFilter(state.history[state.count], action.payload);
       return {
         ...state,
-        history: [...state.history, action.payload],
+        history: history ?? [...state.history, action.payload],
         count: ++state.count,
         values: {
+          ...state.values,
           contents: questionsObj[state.count].contents,
           questions: questions ?? questionsObj[state.count].questions,
+        },
+      };
+    case 'PREV':
+      return {
+        ...state,
+        count: --state.count,
+        values: {
+          ...questionsObj[state.count],
         },
       };
     default:
       return;
   }
 };
+
+const historyFilter = (history, payload) =>
+  (history = history ? [payload] : undefined);
 
 const initalState = {
   count: 0,
@@ -85,25 +98,26 @@ const Testing = () => {
     const checkedInputs = inputs
       .filter(input => input.checked)
       .map(input => input.value);
-    console.log(checkedInputs);
     dispatch({ type: 'NEXT', payload: checkedInputs });
     setButtonDisabled(true);
-    navigate('model');
+    navigate(values.nextURL);
   };
 
   const prevBtnClickHandler = event => {
     event.preventDefault();
-    console.log(values);
-    // navigate(-1);
+    dispatch({ type: 'PREV' });
+    setButtonDisabled(false);
+    navigate(-1);
   };
-
   const inputCheckedHandler = () => setButtonDisabled(false);
-  console.log(history, values);
+  console.log(history);
   return (
     <S.TestWrapper as={'form'} onChange={inputCheckedHandler}>
       <Progress count={{ count }} />
       <Title contents={values.contents} />
-      <Outlet context={{ questions: values.questions }} />
+      <Outlet
+        context={{ questions: values.questions, history: history[count] }}
+      />
       <S.NextButtonWrapper>
         <button onClick={prevBtnClickHandler}>〉</button>
         <button onClick={nextBtnClickHandler} disabled={buttonDisabled}>

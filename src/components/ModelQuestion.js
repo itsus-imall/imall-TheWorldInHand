@@ -16,14 +16,8 @@ const ModelQuestion = () => {
       </S.ModelImgWrapper>
       {questions.map(({ value }) => {
         return (
-          <S.ModelInputWrapper>
-            <input
-              id={value}
-              name='model'
-              key={value}
-              type='radio'
-              value={value}
-            />
+          <S.ModelInputWrapper key={value}>
+            <input id={value} name='model' type='radio' value={value} />
             <label htmlFor={value}>{value}</label>
           </S.ModelInputWrapper>
         );

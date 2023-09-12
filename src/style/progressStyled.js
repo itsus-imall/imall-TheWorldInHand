@@ -8,10 +8,10 @@ export const PercentWrapper = styled.div`
   box-sizing: border-box;
   padding: 4px 5px;
   overflow: hidden;
-  transition: 0.3s;
 `;
 
 export const PercentGauge = styled.div`
+  transition: 0.3s;
   background: #fff;
   height: 100%;
   width: ${props => props.percent}%;
