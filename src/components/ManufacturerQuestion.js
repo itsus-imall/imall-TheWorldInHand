@@ -3,7 +3,6 @@ import * as S from '../style/questionStyled';
 
 const ManufacturerQuestion = () => {
   const { questions, history } = useOutletContext();
-
   return (
     <S.Wrapper>
       {questions.map(({ value }) => {

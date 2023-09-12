@@ -5,6 +5,7 @@ import Testing from './pages/Testing';
 import Result from './pages/Result';
 import ManufacturerQuestion from './components/ManufacturerQuestion';
 import ModelQuestion from './components/ModelQuestion';
+import HandShapeQuestion from './components/HandShapeQuestion';
 
 const App = () => {
   const setScreenSize = () => {
@@ -41,6 +42,8 @@ const App = () => {
           <Route path='testing' element={<Testing />}>
             <Route path='manufacturer' element={<ManufacturerQuestion />} />
             <Route path='model' element={<ModelQuestion />} />
+            <Route path='handShape' element={<HandShapeQuestion />} />
+            <Route path='hand' element={<HandShapeQuestion />} />
           </Route>
           <Route path='result' element={<Result />} />
         </Routes>

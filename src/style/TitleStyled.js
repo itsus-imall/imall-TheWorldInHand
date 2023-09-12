@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  /* flex:  */
+  text-align: left;
   h2 {
     font-size: 1.25rem;
     line-height: 2;

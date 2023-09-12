@@ -1,8 +1,8 @@
 import { useOutletContext } from 'react-router-dom';
 import * as S from '../style/questionStyled';
 
-const ModelQuestion = () => {
-  const { questions, history } = useOutletContext();
+const HandShapeQuestion = () => {
+  const { questions } = useOutletContext();
   return (
     <S.ModelWrapper>
       <S.ModelImgWrapper>
@@ -15,17 +15,9 @@ const ModelQuestion = () => {
         <p>1가지만 선택해 주세요</p>
       </S.ModelImgWrapper>
       {questions.map(({ value }) => {
-        const isValueInHistory =
-          Array.isArray(history) && history.includes(value);
         return (
           <S.ModelInputWrapper key={value}>
-            <input
-              id={value}
-              name='model'
-              type='radio'
-              value={value}
-              defaultChecked={isValueInHistory}
-            />
+            <input id={value} name='model' type='radio' value={value} />
             <label htmlFor={value}>{value}</label>
           </S.ModelInputWrapper>
         );
@@ -34,4 +26,4 @@ const ModelQuestion = () => {
   );
 };
 
-export default ModelQuestion;
+export default HandShapeQuestion;
