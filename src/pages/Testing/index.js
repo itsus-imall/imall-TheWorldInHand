@@ -105,11 +105,22 @@ const Testing = () => {
 
   const prevBtnClickHandler = event => {
     event.preventDefault();
-    dispatch({ type: 'PREV' });
-    setButtonDisabled(false);
+    if (count !== 0) {
+      dispatch({ type: 'PREV' });
+      setButtonDisabled(false);
+    } else {
+      if (
+        !window.confirm(
+          '뒤로가시면 새로 시작하셔야 합니다.\n정말 나가시겠습니까?',
+        )
+      )
+        return;
+    }
     navigate(-1);
   };
+
   const inputCheckedHandler = () => setButtonDisabled(false);
+
   console.log(history);
   return (
     <S.TestWrapper as={'form'} onChange={inputCheckedHandler}>

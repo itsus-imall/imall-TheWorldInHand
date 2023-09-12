@@ -85,7 +85,7 @@ export const ImgWrapper = styled.div`
   }
 `;
 
-export const ButtonWrapper = styled.form`
+export const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: calc(var(--vh, 1vh) * 3);
