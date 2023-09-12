@@ -25,7 +25,7 @@ export const Wrapper = styled.section`
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, calc(-50% + 22px));
     margin-top: 0;
   }
 `;

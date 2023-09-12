@@ -142,7 +142,7 @@ export const ShapeInputWrapper = styled(InputWrapper)`
   flex: 0 0 100%;
   label {
     display: flex;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     gap: 1rem;
     img {
       border-radius: 50%;

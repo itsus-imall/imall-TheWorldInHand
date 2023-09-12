@@ -40,7 +40,7 @@ export const NextButtonWrapper = styled.div`
   }
   button:last-child {
     border-radius: var(--font-size-big);
-    flex: 0 0 80%;
+    flex: 0 0 calc(100% - 60px);
     background: var(--point-color);
     color: #fff;
     font-weight: bold;
