@@ -19,6 +19,7 @@ const questionsObj = [
     contents: {
       title: '상세 기종을 선택해 주세요.',
     },
+    route: 'model',
   },
 ];
 
@@ -67,7 +68,9 @@ const filter = (datas, payload) => {
 const Testing = () => {
   const navigate = useNavigate();
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const { isLoading, data } = useQuery(['question'], getQuestion);
+  const { isLoading, data } = useQuery(['question'], getQuestion, {
+    staleTime: Infinity,
+  });
   const [{ count, values, history }, dispatch] = useReducer(
     questionReducer,
     initalState,
@@ -88,14 +91,16 @@ const Testing = () => {
     navigate('model');
   };
 
-  const prevBtnClickHandler = () => {
-    navigate(-1);
+  const prevBtnClickHandler = event => {
+    event.preventDefault();
+    console.log(values);
+    // navigate(-1);
   };
 
-  const onChange = () => setButtonDisabled(false);
+  const inputCheckedHandler = () => setButtonDisabled(false);
   console.log(history, values);
   return (
-    <S.TestWrapper as={'form'} onChange={onChange}>
+    <S.TestWrapper as={'form'} onChange={inputCheckedHandler}>
       <Progress count={{ count }} />
       <Title contents={values.contents} />
       <Outlet context={{ questions: values.questions }} />

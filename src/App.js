@@ -3,6 +3,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import Testing from './pages/Testing';
 import Result from './pages/Result';
+import ManufacturerQuestion from './components/ManufacturerQuestion';
 import ModelQuestion from './components/ModelQuestion';
 
 const App = () => {
@@ -37,11 +38,11 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/testing' element={<Testing />}>
-            <Route path='manufacturer' element={<ModelQuestion />} />
+          <Route path='testing' element={<Testing />}>
+            <Route path='manufacturer' element={<ManufacturerQuestion />} />
             <Route path='model' element={<ModelQuestion />} />
           </Route>
-          <Route path='/result' element={<Result />} />
+          <Route path='result' element={<Result />} />
         </Routes>
       </BrowserRouter>
     </>
