@@ -1,5 +1,11 @@
-export const historyFilter = (history, payload) => {
-  history = history ? [payload] : undefined;
+export const historyFilter = (history, count, payload) => {
+  if (history[count]) {
+    const newHistory = [...history];
+    newHistory.splice(count, 1);
+    newHistory.splice(count, 0, payload);
+    return newHistory;
+  }
+  return [...history, payload];
 };
 
 export const newDataFilter = (datas, payload) => {

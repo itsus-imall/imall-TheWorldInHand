@@ -71,12 +71,12 @@ export const questionReducer = (state, action) => {
     case 'NEXT':
       if ([0, 4].includes(state.count)) {
         questions = newDataFilter(state.data, action.payload);
-        console.log(questions);
       }
-      const history = historyFilter(state.history[state.count], action.payload);
+      const history = historyFilter(state.history, state.count, action.payload);
+      console.log(history);
       return {
         ...state,
-        history: history ?? [...state.history, action.payload],
+        history,
         count: ++state.count,
         values: {
           ...questionsObj[state.count],

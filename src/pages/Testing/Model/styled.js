@@ -49,7 +49,7 @@ export const ModelInputWrapper = styled(InputWrapper)`
   flex: 1 auto;
   label {
     font-size: var(--font-size-sm);
-    padding: 0.7rem;
+    padding: 0.53rem 0.7rem;
     background: #f2f2f2;
     border: 2px solid #f2f2f2;
     border-radius: var(--font-size-sm);
