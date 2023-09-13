@@ -3,16 +3,16 @@ import { historyFilter, newDataFilter } from '../utils/filter';
 const questionsObj = [
   {
     contents: {
-      title: '사용하는 제품을 선택해 주세요.',
+      title: '사용하는 제품을\n선택해 주세요.',
     },
     questions: [{ value: '삼성' }, { value: '애플' }],
     nextURL: 'model',
   },
   {
     contents: {
-      title: '상세 기종을 선택해 주세요.',
+      title: '상세 기종을\n선택해 주세요.',
     },
-    nextURL: 'handShape',
+    nextURL: 'hand-shape',
   },
   {
     contents: {
@@ -41,7 +41,7 @@ const questionsObj = [
   },
   {
     contents: {
-      title: '손에 집중하시고 답변해 주세요',
+      title: '손에 집중하시고\n답변해 주세요',
       subTitle: '양손잡이의 경우 중복 선택해 주세요.',
     },
     questions: [
@@ -50,6 +50,21 @@ const questionsObj = [
       },
       {
         value: '오른손잡이',
+      },
+    ],
+    nextURL: 'now-use',
+  },
+  {
+    contents: {
+      title: '현재 사용하시는\n소재를 선택해 주세요.',
+      subTitle: '한 가지만 선택해 주세요.',
+    },
+    questions: [
+      {
+        value: '케이스',
+      },
+      {
+        value: '필름',
       },
     ],
     nextURL: '/',
@@ -73,7 +88,6 @@ export const questionReducer = (state, action) => {
         questions = newDataFilter(state.data, action.payload);
       }
       const history = historyFilter(state.history, state.count, action.payload);
-      console.log(history);
       return {
         ...state,
         history,

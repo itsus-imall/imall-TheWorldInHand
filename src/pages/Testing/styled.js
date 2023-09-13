@@ -19,11 +19,13 @@ export const NextButtonWrapper = styled.div`
   padding: 0 var(--wrapper-padding);
   transform: translate(-50%, 0);
   button:active {
-    transform: scale(0.95);
+    transform: scale(0.98);
   }
   button {
+    cursor: pointer;
     border: 0;
     padding: 0;
+    transition: 0.3s;
   }
   button:first-child {
     background: #fff;

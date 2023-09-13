@@ -7,6 +7,7 @@ import ManufacturerQuestion from './pages/Testing/Manufacturer';
 import ModelQuestion from './pages/Testing/Model';
 import HandShapeQuestion from './pages/Testing/HandShape';
 import HandQuestion from './pages/Testing/Hand';
+import NowUse from './pages/Testing/NowUse';
 
 const App = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -48,8 +49,9 @@ const App = () => {
           <Route path='testing' element={<Testing userInfo={userInfo} />}>
             <Route path='manufacturer' element={<ManufacturerQuestion />} />
             <Route path='model' element={<ModelQuestion />} />
-            <Route path='handShape' element={<HandShapeQuestion />} />
+            <Route path='hand-shape' element={<HandShapeQuestion />} />
             <Route path='hand' element={<HandQuestion />} />
+            <Route path='now-use' element={<NowUse />} />
           </Route>
           <Route path='result' element={<Result />} />
         </Routes>

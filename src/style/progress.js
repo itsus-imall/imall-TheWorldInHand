@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const PercentWrapper = styled.div`
-  width: calc(100% - var(--wrapper-padding));
+  width: calc(100% - 5rem);
   background: #7030a0;
   height: 18px;
   border-radius: 15px;

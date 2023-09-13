@@ -18,3 +18,8 @@ export const newDataFilter = (datas, payload) => {
   });
   return newArray;
 };
+
+export const inputsCheckedFilter = () => {
+  const inputs = Array.from(document.querySelectorAll('input'));
+  return inputs.filter(input => input.checked).map(input => input.value);
+};

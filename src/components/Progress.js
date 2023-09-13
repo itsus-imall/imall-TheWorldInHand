@@ -1,4 +1,4 @@
-import * as S from '../style/progress';
+import * as S from '../style/Progress';
 
 const Progress = ({ count: { count } }) => {
   const percent = (100 * count) / 12;

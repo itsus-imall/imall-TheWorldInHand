@@ -8,24 +8,21 @@ import * as S from './styled';
 import Progress from '../../components/Progress';
 import Title from '../../components/Title';
 import { initalState, questionReducer } from '../../reducer/reducer';
+import { inputsCheckedFilter } from '../../utils/filter';
 
 const Testing = ({ userInfo }) => {
   const navigate = useNavigate();
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const { isLoading, data } = useQuery(['question'], getQuestion);
-
-  if (!userInfo) navigate('/');
-
   const [{ count, values, history }, dispatch] = useReducer(
     questionReducer,
     initalState,
   );
 
+  if (!userInfo) navigate('/');
+
   const nextBtnClickHandler = useCallback(() => {
-    const inputs = Array.from(document.querySelectorAll('input'));
-    const checkedInputs = inputs
-      .filter(input => input.checked)
-      .map(input => input.value);
+    const checkedInputs = inputsCheckedFilter();
     dispatch({ type: 'NEXT', payload: checkedInputs });
     setButtonDisabled(true);
     navigate(values.nextURL);
@@ -36,7 +33,6 @@ const Testing = ({ userInfo }) => {
       event.preventDefault();
       if (count !== 0) {
         dispatch({ type: 'PREV' });
-        setButtonDisabled(false);
       } else {
         if (
           !window.confirm(
@@ -50,15 +46,20 @@ const Testing = ({ userInfo }) => {
     [count, navigate],
   );
 
-  const inputCheckedHandler = () => setButtonDisabled(false);
+  const buttonDisabledHandler = () => setButtonDisabled(false);
 
   useEffect(() => {
     if (isLoading) return;
     dispatch({ type: 'DATA_FETCH', payload: data });
   }, [data, isLoading]);
 
+  useEffect(() => {
+    const checkedInputs = inputsCheckedFilter();
+    checkedInputs.length !== 0 && buttonDisabledHandler();
+  }, [count]);
+
   return (
-    <S.Wrapper as={'form'} onChange={inputCheckedHandler}>
+    <S.Wrapper as={'form'} onChange={buttonDisabledHandler}>
       <Progress count={{ count }} />
       <Title contents={values.contents} />
       <Outlet
