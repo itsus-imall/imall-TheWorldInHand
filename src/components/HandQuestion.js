@@ -1,37 +1,34 @@
 import { useOutletContext } from 'react-router-dom';
 import * as S from '../style/questionStyled';
 
-const HandShapeQuestion = () => {
+const HandQuestion = () => {
   const { questions, history } = useOutletContext();
   return (
     <S.Wrapper>
-      {questions.map(({ value, summary }, index) => {
+      {questions.map(({ value }) => {
         const isValueInHistory =
           Array.isArray(history) && history.includes(value);
         return (
-          <S.ShapeInputWrapper key={value}>
+          <S.HandInputWrapper key={value}>
             <input
               id={value}
-              name='model'
-              type='radio'
+              name='hand'
+              type='checkbox'
               value={value}
               defaultChecked={isValueInHistory}
             />
             <label htmlFor={value}>
               <img
-                src={`/images/테스트페이지/260x260_02_손모양${index}.png`}
-                alt='손모양'
+                src={`/images/테스트페이지/260x260_03_${value}.png`}
+                alt='hand'
               />
-              <div>
-                <strong>{value}</strong>
-                <span>{summary}</span>
-              </div>
+              <p>{value}</p>
             </label>
-          </S.ShapeInputWrapper>
+          </S.HandInputWrapper>
         );
       })}
     </S.Wrapper>
   );
 };
 
-export default HandShapeQuestion;
+export default HandQuestion;

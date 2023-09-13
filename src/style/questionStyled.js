@@ -40,17 +40,20 @@ export const InputWrapper = styled.div`
     display: block;
     background: #f3fff3;
   }
-  input[type='radio'] {
+  input[type='radio'],
+  input[type='checkbox'] {
     vertical-align: middle;
     appearance: none;
     border-radius: 50%;
     width: 1.25rem;
     height: 1.25rem;
   }
-  input[type='radio']:checked {
+  input[type='radio']:checked,
+  input[type='checkbox']:checked {
     background: #40c89a;
   }
-  input[type='radio']:checked::before {
+  input[type='radio']:checked::before,
+  input[type='checkbox']:checked::before {
     content: '';
     width: 0.3rem;
     height: 1.5px;
@@ -60,7 +63,8 @@ export const InputWrapper = styled.div`
     left: 50%;
     transform: translate(-100%, 20%) rotate(40deg);
   }
-  input[type='radio']:checked::after {
+  input[type='radio']:checked::after,
+  input[type='checkbox']:checked::after {
     content: '';
     width: 0.5rem;
     height: 1.5px;
@@ -73,6 +77,9 @@ export const InputWrapper = styled.div`
   input:checked + label {
     background: var(--input-checked-bg-color);
     border: 3px solid var(--input-checked-border-color);
+  }
+  input:checked + label p {
+    font-weight: bold;
   }
 `;
 
@@ -167,6 +174,23 @@ export const ShapeInputWrapper = styled(InputWrapper)`
         font-size: 0.8rem;
         color: #7f7f7f;
       }
+    }
+  }
+`;
+
+export const HandInputWrapper = styled(InputWrapper)`
+  label {
+    padding: 1rem;
+    p {
+      font-size: 1rem;
+    }
+    img {
+      box-sizing: border-box;
+      padding: 1rem;
+      background: #d9d9d9;
+      border-radius: 50%;
+      width: 80%;
+      margin-bottom: 0.5rem;
     }
   }
 `;

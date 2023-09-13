@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import Testing from './pages/Testing';
@@ -6,8 +6,11 @@ import Result from './pages/Result';
 import ManufacturerQuestion from './components/ManufacturerQuestion';
 import ModelQuestion from './components/ModelQuestion';
 import HandShapeQuestion from './components/HandShapeQuestion';
+import HandQuestion from './components/HandQuestion';
 
 const App = () => {
+  const [userInfo, setUserInfo] = useState(null);
+
   const setScreenSize = () => {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -38,12 +41,15 @@ const App = () => {
       <nav></nav>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='testing' element={<Testing />}>
+          <Route
+            path='/'
+            element={<Home userInfo={userInfo} setUserInfo={setUserInfo} />}
+          />
+          <Route path='testing' element={<Testing userInfo={userInfo} />}>
             <Route path='manufacturer' element={<ManufacturerQuestion />} />
             <Route path='model' element={<ModelQuestion />} />
             <Route path='handShape' element={<HandShapeQuestion />} />
-            <Route path='hand' element={<HandShapeQuestion />} />
+            <Route path='hand' element={<HandQuestion />} />
           </Route>
           <Route path='result' element={<Result />} />
         </Routes>
