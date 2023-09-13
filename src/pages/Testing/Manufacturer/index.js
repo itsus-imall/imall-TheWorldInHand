@@ -1,10 +1,11 @@
 import { useOutletContext } from 'react-router-dom';
-import * as S from '../style/questionStyled';
+import * as S from './styled';
+import { Wrapper } from '../styled';
 
 const ManufacturerQuestion = () => {
   const { questions, history } = useOutletContext();
   return (
-    <S.Wrapper>
+    <Wrapper>
       {questions.map(({ value }) => {
         const isValueInHistory =
           Array.isArray(history) && history.includes(value);
@@ -26,7 +27,7 @@ const ManufacturerQuestion = () => {
           </S.InputWrapper>
         );
       })}
-    </S.Wrapper>
+    </Wrapper>
   );
 };
 

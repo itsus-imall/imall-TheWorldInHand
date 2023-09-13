@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
-import { Wrapper } from '../Home/styled';
+import { Wrapper as HomeWrapper } from '../Home/styled';
 
-export const TestWrapper = styled(Wrapper)`
+export const Wrapper = styled(HomeWrapper)`
   justify-content: flex-start;
   padding-bottom: calc(var(--wrapper-padding) + 70px);
   gap: 2rem;
@@ -49,4 +49,15 @@ export const NextButtonWrapper = styled.div`
     background: #e9ecef;
     color: #ced4da;
   }
+`;
+
+export const TestWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  max-width: 500px;
+  overflow: scroll;
+  gap: 1rem;
 `;

@@ -3,10 +3,10 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import Testing from './pages/Testing';
 import Result from './pages/Result';
-import ManufacturerQuestion from './components/ManufacturerQuestion';
-import ModelQuestion from './components/ModelQuestion';
-import HandShapeQuestion from './components/HandShapeQuestion';
-import HandQuestion from './components/HandQuestion';
+import ManufacturerQuestion from './pages/Testing/Manufacturer';
+import ModelQuestion from './pages/Testing/Model';
+import HandShapeQuestion from './pages/Testing/HandShape';
+import HandQuestion from './pages/Testing/Hand';
 
 const App = () => {
   const [userInfo, setUserInfo] = useState(null);

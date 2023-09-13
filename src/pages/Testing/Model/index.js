@@ -1,5 +1,5 @@
 import { useOutletContext } from 'react-router-dom';
-import * as S from '../style/questionStyled';
+import * as S from './styled';
 
 const ModelQuestion = () => {
   const { questions, history } = useOutletContext();

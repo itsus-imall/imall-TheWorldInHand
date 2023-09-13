@@ -56,7 +56,7 @@ const Testing = ({ userInfo }) => {
   const inputCheckedHandler = () => setButtonDisabled(false);
 
   return (
-    <S.TestWrapper as={'form'} onChange={inputCheckedHandler}>
+    <S.Wrapper as={'form'} onChange={inputCheckedHandler}>
       <Progress count={{ count }} />
       <Title contents={values.contents} />
       <Outlet
@@ -68,7 +68,7 @@ const Testing = ({ userInfo }) => {
           다음
         </button>
       </S.NextButtonWrapper>
-    </S.TestWrapper>
+    </S.Wrapper>
   );
 };
 
