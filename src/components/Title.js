@@ -1,4 +1,4 @@
-import * as S from '../style/TitleStyled';
+import * as S from '../style/Title';
 
 const Title = ({ contents: { title, subTitle = '' } }) => {
   return (

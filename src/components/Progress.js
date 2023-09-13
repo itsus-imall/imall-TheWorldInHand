@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from '../style/progressStyled';
+import * as S from '../style/progress';
 
 const Progress = ({ count: { count } }) => {
   const percent = (100 * count) / 12;

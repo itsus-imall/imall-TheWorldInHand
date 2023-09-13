@@ -1,3 +1,5 @@
+import { historyFilter, newDataFilter } from '../utils/filter';
+
 const questionsObj = [
   {
     contents: {
@@ -68,7 +70,7 @@ export const questionReducer = (state, action) => {
       return { ...state, data: action.payload };
     case 'NEXT':
       if ([0, 4].includes(state.count)) {
-        questions = filter(state.data, action.payload);
+        questions = newDataFilter(state.data, action.payload);
         console.log(questions);
       }
       const history = historyFilter(state.history[state.count], action.payload);
@@ -83,7 +85,7 @@ export const questionReducer = (state, action) => {
       };
     case 'PREV':
       if ([2].includes(state.count)) {
-        questions = filter(state.data, state.history[state.count - 2]);
+        questions = newDataFilter(state.data, state.history[state.count - 2]);
       }
       return {
         ...state,
@@ -96,18 +98,4 @@ export const questionReducer = (state, action) => {
     default:
       return;
   }
-};
-
-const historyFilter = (history, payload) =>
-  (history = history ? [payload] : undefined);
-
-const filter = (datas, payload) => {
-  let newArray = [];
-  payload.forEach(element => {
-    const keys = Object.keys(datas[element]).map(key => {
-      return { value: key };
-    });
-    newArray = [...keys];
-  });
-  return newArray;
 };

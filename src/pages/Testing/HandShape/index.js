@@ -1,14 +1,13 @@
 import { useOutletContext } from 'react-router-dom';
 import * as S from './styled';
-import { Wrapper } from '../styled';
+import { TestWrapper } from '../styled';
 
 const HandShapeQuestion = () => {
   const { questions, history } = useOutletContext();
   return (
-    <Wrapper>
+    <TestWrapper>
       {questions.map(({ value, summary }, index) => {
-        const isValueInHistory =
-          Array.isArray(history) && history.includes(value);
+        const isValueInHistory = history && history.includes(value);
         return (
           <S.ShapeInputWrapper key={value}>
             <input
@@ -31,7 +30,7 @@ const HandShapeQuestion = () => {
           </S.ShapeInputWrapper>
         );
       })}
-    </Wrapper>
+    </TestWrapper>
   );
 };
 

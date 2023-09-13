@@ -15,8 +15,7 @@ const ModelQuestion = () => {
         <p>1가지만 선택해 주세요</p>
       </S.ModelImgWrapper>
       {questions.map(({ value }) => {
-        const isValueInHistory =
-          Array.isArray(history) && history.includes(value);
+        const isValueInHistory = history && history.includes(value);
         return (
           <S.ModelInputWrapper key={value}>
             <input
