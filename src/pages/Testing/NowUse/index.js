@@ -32,7 +32,7 @@ const inputValues = {
       value: '없음,모르겠음',
     },
   ],
-  필름: ['강화유리', '지문방지', '프라이버시', '블루라이트', '없음 / 모르겠음'],
+  필름: ['강화유리', '지문방지', '프라이버시', '블루라이트', '없음,모르겠음'],
 };
 
 const NowUse = () => {
@@ -46,9 +46,16 @@ const NowUse = () => {
         <TestToggleViewWrapper toggle={toggle}>
           <TestToggleContentWrapper style={{ marginRight: '1rem' }}>
             {inputValues.케이스.map(({ value, summary }) => {
+              const isValueInHistory = history && history.includes(value);
               return (
                 <S.ToggleInputWrapper key={value}>
-                  <input id={value} name='useCase' type='radio' value={value} />
+                  <input
+                    id={value}
+                    name='useCase'
+                    type='radio'
+                    value={value}
+                    defaultChecked={isValueInHistory}
+                  />
                   <label htmlFor={value}>
                     <p>{value}</p>
                     <span>{summary}</span>
@@ -66,9 +73,16 @@ const NowUse = () => {
           </TestToggleContentWrapper>
           <TestToggleContentWrapper>
             {inputValues.필름.map(value => {
+              const isValueInHistory = history && history.includes(value);
               return (
                 <ToggleInputWrapper key={value}>
-                  <input id={value} name='useFilm' type='radio' value={value} />
+                  <input
+                    id={value}
+                    name='useFilm'
+                    type='radio'
+                    value={value}
+                    defaultChecked={isValueInHistory}
+                  />
                   <label htmlFor={value}>
                     <p>{value}</p>
                   </label>

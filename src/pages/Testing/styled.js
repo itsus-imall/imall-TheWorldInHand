@@ -69,6 +69,7 @@ export const TestWrapper = styled.div`
 export const TestToggleWrapper = styled(TestWrapper)`
   justify-content: center;
   overflow: hidden;
+  overflow-y: scroll;
 `;
 
 export const TestToggleViewWrapper = styled.div`
@@ -77,6 +78,7 @@ export const TestToggleViewWrapper = styled.div`
     ${props => (props.toggle === '0' ? '0%' : 'calc(-100% - 1rem)')}
   );
   transition: 0.3s;
+  align-items: baseline;
 `;
 
 export const TestToggleContentWrapper = styled.div`
@@ -89,7 +91,7 @@ export const TestToggleContentWrapper = styled.div`
 export const ToggleInputWrapper = styled(InputWrapper)`
   flex: 0 0 100%;
   label {
-    padding: 1rem 2rem;
+    padding: 0.7rem 2rem;
     border-radius: 0.5rem;
   }
   h2 {

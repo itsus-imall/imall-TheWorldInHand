@@ -57,7 +57,7 @@ const questionsObj = [
   {
     contents: {
       title: '현재 사용하시는\n소재를 선택해 주세요.',
-      subTitle: '한 가지만 선택해 주세요.',
+      subTitle: '한 가지씩 선택해 주세요.',
     },
     questions: [
       {
