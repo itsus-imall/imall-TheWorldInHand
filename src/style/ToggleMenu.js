@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   box-sizing: border-box;
   border-radius: 30px;
   overflow: hidden;
-  padding: 0.3rem 0;
+  padding: 0.5rem 0;
   button {
     flex: 1 1 50%;
     background: transparent;
@@ -19,12 +19,11 @@ export const Wrapper = styled.div`
     font-size: 0.8rem;
     transition: 0.3s;
     cursor: pointer;
+    color: #000;
   }
-  button:first-of-type {
-    color: ${props => (props.toggle ? '#fff' : '#000')};
-  }
-  button:last-of-type {
-    color: ${props => (props.toggle ? '#000' : '#fff')};
+  button[value='${props => props.toggle}'] {
+    font-weight: bold;
+    color: #fff;
   }
 `;
 
@@ -33,7 +32,10 @@ export const SelectedToggle = styled.div`
   top: 50%;
   left: 0;
   transition: 0.3s;
-  transform: translate(${props => (props.toggle ? '0' : '100%')}, -50%);
+  transform: translate(
+    ${props => (props.toggle === '0' ? '0%' : '100%')},
+    -50%
+  );
   width: 50%;
   height: 100%;
   border-radius: 30px;

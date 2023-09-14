@@ -7,8 +7,9 @@ export const InputWrapper = styled.div`
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
-    display: none;
+    opacity: 0;
     z-index: 2;
+    transition: 0.3s;
   }
   label {
     border-radius: var(--font-size-md);
@@ -20,13 +21,21 @@ export const InputWrapper = styled.div`
     cursor: pointer;
     border: 3px solid #fff;
     color: #000;
+    p {
+      font-size: 1rem;
+    }
+    span {
+      font-weight: 400;
+      font-size: 0.8rem;
+      color: #7f7f7f;
+    }
   }
   label:active {
     transform: scale(0.95);
   }
   input:checked {
     border: 0;
-    display: block;
+    opacity: 1;
     background: #f3fff3;
   }
   input[type='radio'],
@@ -66,8 +75,9 @@ export const InputWrapper = styled.div`
   input:checked + label {
     background: var(--input-checked-bg-color);
     border: 3px solid var(--input-checked-border-color);
-  }
-  input:checked + label p {
-    font-weight: bold;
+    p,
+    strong {
+      font-weight: bold;
+    }
   }
 `;

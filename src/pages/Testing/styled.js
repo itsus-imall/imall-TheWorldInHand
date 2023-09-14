@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { Wrapper as HomeWrapper } from '../Home/styled';
+import { InputWrapper } from './Manufacturer/styled';
 
 export const Wrapper = styled(HomeWrapper)`
   justify-content: flex-start;
@@ -67,4 +68,38 @@ export const TestWrapper = styled.div`
 
 export const TestToggleWrapper = styled(TestWrapper)`
   justify-content: center;
+  overflow: hidden;
+`;
+
+export const TestToggleViewWrapper = styled.div`
+  display: flex;
+  transform: translateX(
+    ${props => (props.toggle === '0' ? '0%' : 'calc(-100% - 1rem)')}
+  );
+  transition: 0.3s;
+`;
+
+export const TestToggleContentWrapper = styled.div`
+  flex: 0 0 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+`;
+
+export const ToggleInputWrapper = styled(InputWrapper)`
+  flex: 0 0 100%;
+  label {
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+  }
+  h2 {
+    font-size: 0.8rem;
+    font-weight: 400;
+  }
+  input {
+    top: 50%;
+    left: 1rem;
+    transform: translate(-25%, -50%);
+    margin: 0;
+  }
 `;

@@ -32,7 +32,9 @@ const GlobalStyle = createGlobalStyle`
     --font-size-root: 22px;
   }
 }
-
+*{
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
 html,
 body,
 div,
@@ -180,6 +182,9 @@ nav {
 }
 button {
   cursor: pointer;
+}
+label:active{
+  transform:scale(0.98);
 }
 `;
 

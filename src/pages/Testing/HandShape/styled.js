@@ -24,6 +24,8 @@ export const ShapeInputWrapper = styled(InputWrapper)`
       word-break: keep-all;
       strong {
         font-size: 1rem;
+        font-weight: 400;
+        transition: 0.3s;
         color: #5a1de7;
       }
       span {

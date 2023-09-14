@@ -46,7 +46,7 @@ const App = () => {
             path='/'
             element={<Home userInfo={userInfo} setUserInfo={setUserInfo} />}
           />
-          <Route path='testing' element={<Testing userInfo={userInfo} />}>
+          <Route path='testing' element={<Testing userInfo={userInfo ?? ''} />}>
             <Route path='manufacturer' element={<ManufacturerQuestion />} />
             <Route path='model' element={<ModelQuestion />} />
             <Route path='hand-shape' element={<HandShapeQuestion />} />

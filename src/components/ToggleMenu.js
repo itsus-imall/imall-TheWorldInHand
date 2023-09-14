@@ -3,9 +3,9 @@ import * as S from '../style/ToggleMenu';
 const ToggleMenu = ({ questions, setToggle, toggle }) => {
   const toggleClickHandler = event => {
     event.preventDefault();
-    setToggle(event.target.value === '0' ? true : false);
+    setToggle(event.target.value);
   };
-  console.log(toggle);
+
   return (
     <S.Wrapper toggle={toggle}>
       <S.SelectedToggle toggle={toggle} />
