@@ -1,3 +1,6 @@
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 :root {
@@ -175,3 +178,9 @@ nav {
   background: #fff;
   width: 100%;
 }
+button {
+  cursor: pointer;
+}
+`;
+
+export default GlobalStyle;

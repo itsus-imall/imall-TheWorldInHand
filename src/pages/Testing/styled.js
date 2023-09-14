@@ -26,6 +26,7 @@ export const NextButtonWrapper = styled.div`
     border: 0;
     padding: 0;
     transition: 0.3s;
+    font-size: 1rem;
   }
   button:first-child {
     background: #fff;
@@ -62,4 +63,8 @@ export const TestWrapper = styled.div`
   max-width: 500px;
   overflow: scroll;
   gap: 1rem;
+`;
+
+export const TestToggleWrapper = styled(TestWrapper)`
+  justify-content: center;
 `;
