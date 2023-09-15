@@ -32,7 +32,7 @@ const inputValues = {
       value: '없음,모르겠음',
     },
   ],
-  필름: ['강화유리', '지문방지', '프라이버시', '블루라이트', '없음,모르겠음'],
+  필름: ['강화유리', '지문방지', '프라이버시', '블루라이트', '없음, 모르겠음'],
 };
 
 const NowUse = () => {
@@ -54,6 +54,7 @@ const NowUse = () => {
                     name='useCase'
                     type='radio'
                     value={value}
+                    data-toggle={toggle}
                     defaultChecked={isValueInHistory}
                   />
                   <label htmlFor={value}>
@@ -81,6 +82,7 @@ const NowUse = () => {
                     name='useFilm'
                     type='radio'
                     value={value}
+                    data-toggle={toggle}
                     defaultChecked={isValueInHistory}
                   />
                   <label htmlFor={value}>

@@ -8,29 +8,29 @@ import * as S from './styled';
 import Progress from '../../components/Progress';
 import Title from '../../components/Title';
 import { initalState, questionReducer } from '../../reducer/reducer';
-import { inputsCheckedFilter } from '../../utils/filter';
 
 const Testing = ({ userInfo }) => {
   const navigate = useNavigate();
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [checkedInputValues, setCheckedInputValues] = useState([]);
   const { isLoading, data } = useQuery(['question'], getQuestion);
   const [{ count, values, history }, dispatch] = useReducer(
     questionReducer,
     initalState,
   );
-
   if (!userInfo) navigate('/');
 
   const nextBtnClickHandler = useCallback(() => {
-    const checkedInputs = inputsCheckedFilter();
-    dispatch({ type: 'NEXT', payload: checkedInputs });
+    dispatch({ type: 'NEXT', payload: checkedInputValues });
     setButtonDisabled(true);
+    setCheckedInputValues([]);
     navigate(values.nextURL);
-  }, [navigate, values.nextURL]);
+  }, [navigate, values.nextURL, checkedInputValues]);
 
   const prevBtnClickHandler = useCallback(
     event => {
       event.preventDefault();
+      setCheckedInputValues([]);
       if (count !== 0) {
         dispatch({ type: 'PREV' });
       } else {
@@ -46,7 +46,36 @@ const Testing = ({ userInfo }) => {
     [count, navigate],
   );
 
-  const buttonDisabledHandler = () => setButtonDisabled(false);
+  const buttonDisabledHandler = event => {
+    const {
+      value,
+      checked,
+      dataset: { toggle },
+    } = event.target;
+    const { nextChecked } = values;
+    setCheckedInputValues(prev => {
+      if (nextChecked === 1) {
+        setButtonDisabled(false);
+        return [value];
+      }
+      const oldArray = [...prev];
+      if (checked) {
+        oldArray.splice(
+          toggle ?? oldArray.indexOf(value),
+          oldArray.length === nextChecked ? 1 : 0,
+          value,
+        );
+      } else {
+        oldArray.splice(oldArray.indexOf(value), 1);
+      }
+      setButtonDisabled(
+        nextChecked === -1
+          ? oldArray.length === 0
+          : oldArray.length !== nextChecked,
+      );
+      return [...oldArray];
+    });
+  };
 
   useEffect(() => {
     if (isLoading) return;
@@ -54,9 +83,12 @@ const Testing = ({ userInfo }) => {
   }, [data, isLoading]);
 
   useEffect(() => {
-    const checkedInputs = inputsCheckedFilter();
-    checkedInputs.length !== 0 && buttonDisabledHandler();
-  }, [count]);
+    if (!history[count]) return;
+    setButtonDisabled(false);
+    setCheckedInputValues([...history[count]]);
+  }, [count, history]);
+
+  console.log(history);
 
   return (
     <S.Wrapper as={'form'} onChange={buttonDisabledHandler}>

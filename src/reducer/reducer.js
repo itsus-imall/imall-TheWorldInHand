@@ -7,12 +7,14 @@ const questionsObj = [
     },
     questions: [{ value: '삼성' }, { value: '애플' }],
     nextURL: 'model',
+    nextChecked: 1,
   },
   {
     contents: {
       title: '상세 기종을\n선택해 주세요.',
     },
     nextURL: 'hand-shape',
+    nextChecked: 1,
   },
   {
     contents: {
@@ -38,6 +40,7 @@ const questionsObj = [
       },
     ],
     nextURL: 'hand',
+    nextChecked: 1,
   },
   {
     contents: {
@@ -53,6 +56,7 @@ const questionsObj = [
       },
     ],
     nextURL: 'now-use',
+    nextChecked: -1,
   },
   {
     contents: {
@@ -65,6 +69,31 @@ const questionsObj = [
       },
       {
         value: '필름',
+      },
+    ],
+    nextURL: 'three',
+    nextChecked: 2,
+  },
+  {
+    contents: {
+      title: '휴대폰 액세서리,\n어떤 점에 구매하시나요?',
+      subTitle: '세 가지 선택해주세요',
+    },
+    questions: [
+      {
+        value: '소재',
+      },
+      {
+        value: '색상',
+      },
+      {
+        value: '가격',
+      },
+      {
+        value: '두께',
+      },
+      {
+        value: '보호력',
       },
     ],
     nextURL: '/',
@@ -84,7 +113,7 @@ export const questionReducer = (state, action) => {
     case 'DATA_FETCH':
       return { ...state, data: action.payload };
     case 'NEXT':
-      if ([0, 4].includes(state.count)) {
+      if ([0].includes(state.count)) {
         questions = newDataFilter(state.data, action.payload);
       }
       const history = historyFilter(state.history, state.count, action.payload);

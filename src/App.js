@@ -8,6 +8,7 @@ import ModelQuestion from './pages/Testing/Model';
 import HandShapeQuestion from './pages/Testing/HandShape';
 import HandQuestion from './pages/Testing/Hand';
 import NowUse from './pages/Testing/NowUse';
+import Three from './pages/Testing/Three';
 
 const App = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -52,6 +53,7 @@ const App = () => {
             <Route path='hand-shape' element={<HandShapeQuestion />} />
             <Route path='hand' element={<HandQuestion />} />
             <Route path='now-use' element={<NowUse />} />
+            <Route path='three' element={<Three />} />
           </Route>
           <Route path='result' element={<Result />} />
         </Routes>

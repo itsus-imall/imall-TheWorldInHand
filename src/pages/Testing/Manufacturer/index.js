@@ -4,6 +4,7 @@ import { TestWrapper } from '../styled';
 
 const ManufacturerQuestion = () => {
   const { questions, history } = useOutletContext();
+
   return (
     <TestWrapper>
       {questions.map(({ value }) => {

@@ -8,7 +8,7 @@ export const ToggleInputWrapper = styled(InputWrapper)`
     flex-direction: column;
     position: relative;
     text-align: left;
-    gap: 1rem;
+    gap: 0.5rem;
     img {
       width: 25%;
       position: absolute;
