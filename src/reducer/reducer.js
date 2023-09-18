@@ -97,6 +97,7 @@ const questionsObj = [
       },
     ],
     nextURL: '/',
+    nextChecked: 3,
   },
 ];
 

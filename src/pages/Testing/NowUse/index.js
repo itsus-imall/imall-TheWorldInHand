@@ -41,7 +41,7 @@ const NowUse = () => {
 
   const onClick = event => {
     setTimeout(() => {
-      setToggle(event.target.dataset.toggle === '0' && '1');
+      setToggle(event.target.dataset.toggle === '0' ? '1' : '0');
     }, 400);
   };
   return (
