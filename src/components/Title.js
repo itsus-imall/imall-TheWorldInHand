@@ -1,6 +1,7 @@
+import React from 'react';
 import * as S from '../style/Title';
 
-const Title = ({ contents: { title, subTitle = '' } }) => {
+const Title = React.memo(({ contents: { title, subTitle = '' } }) => {
   return (
     <S.Wrapper>
       <h2>
@@ -11,6 +12,6 @@ const Title = ({ contents: { title, subTitle = '' } }) => {
       {subTitle === '' ? null : <p>{subTitle}</p>}
     </S.Wrapper>
   );
-};
+});
 
 export default Title;

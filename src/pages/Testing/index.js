@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer, useState } from 'react';
+import { memo, useCallback, useEffect, useReducer, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { getQuestion } from '../../services/apis';
@@ -9,7 +9,7 @@ import Progress from '../../components/Progress';
 import Title from '../../components/Title';
 import { initalState, questionReducer } from '../../reducer/reducer';
 
-const Testing = ({ userInfo }) => {
+const Testing = memo(({ userInfo }) => {
   const navigate = useNavigate();
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [checkedInputValues, setCheckedInputValues] = useState([]);
@@ -88,8 +88,6 @@ const Testing = ({ userInfo }) => {
     setCheckedInputValues([...history[count]]);
   }, [count, history]);
 
-  console.log(history);
-
   return (
     <S.Wrapper as={'form'} onChange={buttonDisabledHandler}>
       <Progress count={{ count }} />
@@ -105,6 +103,6 @@ const Testing = ({ userInfo }) => {
       </S.NextButtonWrapper>
     </S.Wrapper>
   );
-};
+});
 
 export default Testing;

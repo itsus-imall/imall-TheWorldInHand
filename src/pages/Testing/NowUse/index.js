@@ -39,6 +39,11 @@ const NowUse = () => {
   const { questions, history } = useOutletContext();
   const [toggle, setToggle] = useState('0');
 
+  const onClick = event => {
+    setTimeout(() => {
+      setToggle(event.target.dataset.toggle === '0' && '1');
+    }, 400);
+  };
   return (
     <>
       <ToggleMenu questions={questions} toggle={toggle} setToggle={setToggle} />
@@ -56,6 +61,7 @@ const NowUse = () => {
                     value={value}
                     data-toggle={toggle}
                     defaultChecked={isValueInHistory}
+                    onClick={onClick}
                   />
                   <label htmlFor={value}>
                     <p>{value}</p>

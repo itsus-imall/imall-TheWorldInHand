@@ -8,6 +8,7 @@ const Home = React.memo(({ userInfo, setUserInfo }) => {
     event => {
       if (event.origin === 'http://localhost:3000') {
         setUserInfo({ userId: 'wmh1245', type: 'handTest' }); // 아이프레임 실제
+        window.removeEventListener('message', getUserInfoHandler);
       }
       if (
         event.origin === 'https://youngwuk2.cafe24.com' ||
@@ -16,15 +17,17 @@ const Home = React.memo(({ userInfo, setUserInfo }) => {
         event.origin === 'https://www.i-m-all.com'
       ) {
         setUserInfo({ userId: event.data.id, type: event.data.type }); // 아이프레임 실제
+        window.removeEventListener('message', getUserInfoHandler);
       }
     },
     [setUserInfo],
   );
 
   useEffect(() => {
+    if (userInfo) window.removeEventListener('message', getUserInfoHandler);
     window.addEventListener('message', event => getUserInfoHandler(event));
     return () => window.removeEventListener('message', getUserInfoHandler);
-  }, [getUserInfoHandler]);
+  }, [getUserInfoHandler, userInfo]);
 
   return (
     <S.Wrapper>
