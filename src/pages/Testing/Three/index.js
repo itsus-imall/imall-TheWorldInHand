@@ -20,8 +20,6 @@ const Three = () => {
   return (
     <TestWrapper>
       {questions.map(({ value }) => {
-        console.log(checkedInputValues);
-        const isValueInHistory = history && history.includes(value);
         return (
           <S.ThreeInputWrapper key={value}>
             <input
@@ -29,7 +27,8 @@ const Three = () => {
               name='three'
               type='checkbox'
               value={value}
-              defaultChecked={isValueInHistory}
+              defaultChecked={history && history.includes(value)}
+              checked={checkedInputValues.includes(value)}
             />
             <label htmlFor={value}>
               <div>
