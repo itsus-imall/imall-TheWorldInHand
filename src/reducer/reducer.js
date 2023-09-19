@@ -96,8 +96,9 @@ const questionsObj = [
         value: '보호력',
       },
     ],
-    nextURL: '/',
+    nextURL: null,
     nextChecked: 3,
+    filter: true,
   },
 ];
 
@@ -118,6 +119,7 @@ export const questionReducer = (state, action) => {
         questions = newDataFilter(state.data, action.payload);
       }
       const history = historyFilter(state.history, state.count, action.payload);
+      console.log(questionsObj);
       return {
         ...state,
         history,
@@ -139,7 +141,80 @@ export const questionReducer = (state, action) => {
           questions: questions ?? questionsObj[state.count].questions,
         },
       };
+    case 'TEST':
+      const values = threeQuestionFilter(action.payload, state.history);
+      console.log(values);
+      // questionsObj.push('sss');
+      return { ...state, values };
     default:
       return;
   }
+};
+
+const threeQuestionObj = {
+  소재: {
+    contents: {
+      title: '평소 휴대폰을 이용하셨을 때\n어떤 점이 불편하신가요?',
+      subTitle: '한 가지씩 선택해 주세요',
+    },
+    questions: [
+      {
+        value: '케이스',
+      },
+      {
+        value: '필름',
+      },
+    ],
+    nextChecked: 2,
+  },
+  색상: {
+    contents: {
+      title: '선호하는 색상을\n골라주세요',
+    },
+    questions: [{ value: '기본 색상' }, { value: '추가 색상' }],
+    nextChecked: -1,
+  },
+  가격: {
+    contents: {
+      title: '선호하는 가격대를\n골라주세요!',
+      subTitle: '한 가지만 선택해 주세요.',
+    },
+    questions: [
+      { value: '1만원대 이하' },
+      { value: '1만원대 이상' },
+      { value: '2만원대 이상' },
+    ],
+    nextChecked: 1,
+  },
+  두께: {
+    contents: {
+      title: '내게 딱 맞는\n두께를 선택해 주세요',
+      subTitle: '한 가지씩 선택해 주세요.',
+    },
+    questions: [{ value: '케이스의 소재' }, { value: '보호력' }],
+    nextChecked: 2,
+  },
+  보호력: {
+    contents: {
+      title: '사용하고 싶은\n필름을 선택해 주세요',
+      subTitle: '한 가지만 선택해 주세요.',
+    },
+    questions: [
+      { value: '스크래치 방지' },
+      { value: '지문 방지' },
+      { value: '프라이버시' },
+      { value: '우수한 화질' },
+      { value: '카메라 보호' },
+    ],
+    nextChecked: 1,
+  },
+};
+
+const threeQuestionFilter = (payload, history) => {
+  questionsObj.splice(6);
+  console.log(history[5], payload);
+  payload.forEach(content => {
+    questionsObj.push(threeQuestionObj[content]);
+  });
+  return questionsObj[5];
 };

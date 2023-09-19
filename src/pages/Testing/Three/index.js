@@ -9,7 +9,7 @@ import { TestWrapper } from '../styled';
 const Three = () => {
   const { questions, history, checkedInputValues } = useOutletContext();
   const [loading, setLoading] = useState(true);
-  console.log(checkedInputValues);
+
   useEffect(() => {
     const timeout = setTimeout(() => setLoading(false), 3000);
     return () => clearTimeout(timeout);
@@ -27,8 +27,11 @@ const Three = () => {
               name='three'
               type='checkbox'
               value={value}
-              defaultChecked={history && history.includes(value)}
-              checked={checkedInputValues.includes(value)}
+              defaultChecked={
+                history
+                  ? history.includes(value)
+                  : checkedInputValues.includes(value)
+              }
             />
             <label htmlFor={value}>
               <div>

@@ -21,10 +21,11 @@ const Testing = memo(({ userInfo }) => {
   if (!userInfo) navigate('/');
 
   const nextBtnClickHandler = () => {
+    if (values.filter) dispatch({ type: 'TEST', payload: checkedInputValues });
     dispatch({ type: 'NEXT', payload: checkedInputValues });
     setButtonDisabled(true);
     setCheckedInputValues([]);
-    navigate(values.nextURL);
+    navigate(values.filter ? checkedInputValues[0] : values.nextURL);
   };
 
   const prevBtnClickHandler = event => {
