@@ -230,10 +230,8 @@ const threeQuestionFilter = (payload, history) => {
   history[startIndex - 1] && questionsObj.splice(startIndex, 3);
   payload.forEach((content, index) => {
     const copyObj = { ...threeQuestionObj[content] };
-    if (index === 2) {
-      copyObj.nextURL = 'brand';
-      delete copyObj.filter;
-    }
+    delete copyObj.filter;
+    copyObj.nextURL = index === 2 ? 'brand' : `three/${payload[index + 1]}`;
     questionsObj.splice(startIndex + index, 0, copyObj);
   });
   console.log(questionsObj);
