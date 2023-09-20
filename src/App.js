@@ -9,6 +9,7 @@ import HandShapeQuestion from './pages/Testing/HandShape';
 import HandQuestion from './pages/Testing/Hand';
 import NowUse from './pages/Testing/NowUse';
 import Three from './pages/Testing/Three';
+import Material from './pages/Testing/Material';
 
 const App = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -54,6 +55,7 @@ const App = () => {
             <Route path='hand' element={<HandQuestion />} />
             <Route path='now-use' element={<NowUse />} />
             <Route path='three' element={<Three />} />
+            <Route path='소재' element={<Material />} />
           </Route>
           <Route path='result' element={<Result />} />
         </Routes>

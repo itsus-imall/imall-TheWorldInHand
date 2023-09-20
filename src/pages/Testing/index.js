@@ -90,7 +90,7 @@ const Testing = memo(({ userInfo }) => {
     setButtonDisabled(false);
     setCheckedInputValues([...history[count]]);
   }, [count, history]);
-
+  console.log(checkedInputValues);
   return (
     <S.Wrapper as={'form'} onChange={buttonDisabledHandler}>
       <Progress count={{ count }} />

@@ -100,56 +100,20 @@ const questionsObj = [
     nextChecked: 3,
     filter: true,
   },
+  {
+    contents: {
+      title: 'test',
+      subTitle: 'test',
+    },
+    questions: [
+      {
+        value: '1',
+      },
+    ],
+    nextURL: null,
+    nextChecked: 3,
+  },
 ];
-
-export const initalState = {
-  count: 0,
-  data: null,
-  values: questionsObj[0],
-  history: [],
-};
-
-export const questionReducer = (state, action) => {
-  let questions = null;
-  switch (action.type) {
-    case 'DATA_FETCH':
-      return { ...state, data: action.payload };
-    case 'NEXT':
-      if ([0].includes(state.count)) {
-        questions = newDataFilter(state.data, action.payload);
-      }
-      const history = historyFilter(state.history, state.count, action.payload);
-      console.log(questionsObj);
-      return {
-        ...state,
-        history,
-        count: ++state.count,
-        values: {
-          ...questionsObj[state.count],
-          questions: questions ?? questionsObj[state.count].questions,
-        },
-      };
-    case 'PREV':
-      if ([2].includes(state.count)) {
-        questions = newDataFilter(state.data, state.history[state.count - 2]);
-      }
-      return {
-        ...state,
-        count: --state.count,
-        values: {
-          ...questionsObj[state.count],
-          questions: questions ?? questionsObj[state.count].questions,
-        },
-      };
-    case 'TEST':
-      const values = threeQuestionFilter(action.payload, state.history);
-      console.log(values);
-      // questionsObj.push('sss');
-      return { ...state, values };
-    default:
-      return;
-  }
-};
 
 const threeQuestionObj = {
   소재: {
@@ -210,11 +174,58 @@ const threeQuestionObj = {
   },
 };
 
-const threeQuestionFilter = (payload, history) => {
-  questionsObj.splice(6);
-  console.log(history[5], payload);
-  payload.forEach(content => {
-    questionsObj.push(threeQuestionObj[content]);
+export const initalState = {
+  count: 0,
+  data: null,
+  values: questionsObj[0],
+  history: [],
+};
+
+export const questionReducer = (state, action) => {
+  let questions = null;
+  switch (action.type) {
+    case 'DATA_FETCH':
+      return { ...state, data: action.payload };
+    case 'NEXT':
+      if ([0].includes(state.count)) {
+        questions = newDataFilter(state.data, action.payload);
+      }
+      const history = historyFilter(state.history, state.count, action.payload);
+      return {
+        ...state,
+        history,
+        count: ++state.count,
+        values: {
+          ...questionsObj[state.count],
+          questions: questions ?? questionsObj[state.count].questions,
+        },
+      };
+    case 'PREV':
+      if ([2].includes(state.count)) {
+        questions = newDataFilter(state.data, state.history[state.count - 2]);
+      }
+      return {
+        ...state,
+        count: --state.count,
+        values: {
+          ...questionsObj[state.count],
+          questions: questions ?? questionsObj[state.count].questions,
+        },
+      };
+    case 'TEST':
+      console.log('SDfs');
+      threeQuestionFilter(action.payload);
+      return { ...state };
+    default:
+      return;
+  }
+};
+
+const threeQuestionFilter = payload => {
+  let startIndex = 6;
+  // questionsObj.splice(startIndex, 3);
+  payload.forEach((content, index) => {
+    questionsObj.splice(startIndex + index, 0, threeQuestionObj[content]);
   });
-  return questionsObj[5];
+  console.log(questionsObj);
 };
