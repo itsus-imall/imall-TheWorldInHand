@@ -25,7 +25,7 @@ const Testing = memo(({ userInfo }) => {
     dispatch({ type: 'NEXT', payload: checkedInputValues });
     setButtonDisabled(true);
     setCheckedInputValues([]);
-    navigate(values.filter ? checkedInputValues[0] : values.nextURL);
+    navigate(values.filter ? `three/${checkedInputValues[0]}` : values.nextURL);
   };
 
   const prevBtnClickHandler = event => {

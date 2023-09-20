@@ -130,6 +130,7 @@ const threeQuestionObj = {
       },
     ],
     nextChecked: 2,
+    filter: true,
   },
   색상: {
     contents: {
@@ -137,6 +138,7 @@ const threeQuestionObj = {
     },
     questions: [{ value: '기본 색상' }, { value: '추가 색상' }],
     nextChecked: -1,
+    filter: true,
   },
   가격: {
     contents: {
@@ -149,6 +151,7 @@ const threeQuestionObj = {
       { value: '2만원대 이상' },
     ],
     nextChecked: 1,
+    filter: true,
   },
   두께: {
     contents: {
@@ -157,6 +160,7 @@ const threeQuestionObj = {
     },
     questions: [{ value: '케이스의 소재' }, { value: '보호력' }],
     nextChecked: 2,
+    filter: true,
   },
   보호력: {
     contents: {
@@ -171,6 +175,7 @@ const threeQuestionObj = {
       { value: '카메라 보호' },
     ],
     nextChecked: 1,
+    filter: true,
   },
 };
 
@@ -213,19 +218,23 @@ export const questionReducer = (state, action) => {
         },
       };
     case 'TEST':
-      console.log('SDfs');
-      threeQuestionFilter(action.payload);
+      threeQuestionFilter(action.payload, state.history);
       return { ...state };
     default:
       return;
   }
 };
 
-const threeQuestionFilter = payload => {
+const threeQuestionFilter = (payload, history) => {
   let startIndex = 6;
-  // questionsObj.splice(startIndex, 3);
+  history[startIndex - 1] && questionsObj.splice(startIndex, 3);
   payload.forEach((content, index) => {
-    questionsObj.splice(startIndex + index, 0, threeQuestionObj[content]);
+    const copyObj = { ...threeQuestionObj[content] };
+    if (index === 2) {
+      copyObj.nextURL = 'brand';
+      delete copyObj.filter;
+    }
+    questionsObj.splice(startIndex + index, 0, copyObj);
   });
   console.log(questionsObj);
 };
