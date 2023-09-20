@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
-import ToggleMenu from '../../../components/ToggleMenu';
+import ToggleMenu from '../../../../components/ToggleMenu';
 import {
   TestToggleContentWrapper,
   TestToggleViewWrapper,
   TestToggleWrapper,
   ToggleInputWrapper,
-} from '../styled';
+} from '../../styled';
 
 const inputValues = {
   케이스: [
