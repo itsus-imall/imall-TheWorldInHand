@@ -1,6 +1,6 @@
+import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
-import { useEffect, useState } from 'react';
 import Loading from '../../../components/Loading';
 
 import * as S from './styled';

@@ -217,7 +217,7 @@ export const questionReducer = (state, action) => {
           questions: questions ?? questionsObj[state.count].questions,
         },
       };
-    case 'TEST':
+    case 'FILTER':
       threeQuestionFilter(action.payload, state.history);
       return { ...state };
     default:

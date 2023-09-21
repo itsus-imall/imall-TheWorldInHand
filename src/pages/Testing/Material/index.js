@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
-import ToggleMenu from '../../../../components/ToggleMenu';
+import ToggleMenu from '../../../components/ToggleMenu';
 import {
   TestToggleContentWrapper,
   TestToggleViewWrapper,
   TestToggleWrapper,
   ToggleInputWrapper,
-} from '../../styled';
+} from '../styled';
 
 const inputValues = {
   케이스: [
@@ -35,6 +35,7 @@ const Material = () => {
       setToggle(event.target.dataset.toggle === '0' ? '1' : '0');
     }, 400);
   };
+
   return (
     <>
       <ToggleMenu questions={questions} toggle={toggle} setToggle={setToggle} />

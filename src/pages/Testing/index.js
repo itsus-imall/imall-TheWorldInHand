@@ -21,7 +21,8 @@ const Testing = memo(({ userInfo }) => {
   if (!userInfo) navigate('/');
 
   const nextBtnClickHandler = () => {
-    if (values.filter) dispatch({ type: 'TEST', payload: checkedInputValues });
+    if (values.filter)
+      dispatch({ type: 'FILTER', payload: checkedInputValues });
     dispatch({ type: 'NEXT', payload: checkedInputValues });
     setButtonDisabled(true);
     setCheckedInputValues([]);
@@ -90,7 +91,7 @@ const Testing = memo(({ userInfo }) => {
     setButtonDisabled(false);
     setCheckedInputValues([...history[count]]);
   }, [count, history]);
-
+  console.log('SDf');
   return (
     <S.Wrapper as={'form'} onChange={buttonDisabledHandler}>
       <Progress count={{ count }} />
