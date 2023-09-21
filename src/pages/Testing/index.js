@@ -52,37 +52,38 @@ const Testing = memo(({ userInfo }) => {
       dataset: { toggle },
     } = event.target;
     const { nextChecked } = values;
+
     setCheckedInputValues(prev => {
+      const oldArray = [...prev];
+      const toggleIndex = toggle ? oldArray.indexOf(toggle) : -1;
+      const valueIndex = oldArray.indexOf(value);
+
       if (nextChecked === 1) {
         setButtonDisabled(false);
         return [value];
       }
-      const oldArray = [...prev];
+
       if (checked) {
-        if (toggle) {
-          oldArray.splice(
-            toggle,
-            oldArray.length === nextChecked ? 1 : 0,
-            value,
-          );
-        } else {
-          if (oldArray.length === nextChecked) oldArray.shift();
-          oldArray.push(value);
-        }
-      } else {
-        oldArray.splice(oldArray.indexOf(value), 1);
+        if (toggleIndex !== -1) oldArray[toggleIndex] = value;
+        else if (oldArray.length === nextChecked) oldArray.shift();
+        oldArray.push(value);
+      } else if (valueIndex !== -1) {
+        oldArray.splice(valueIndex, 1);
       }
-      setButtonDisabled(
+
+      const isButtonDisabled =
         nextChecked === -1
           ? oldArray.length === 0
-          : oldArray.length !== nextChecked,
-      );
+          : oldArray.length !== nextChecked;
+
+      setButtonDisabled(isButtonDisabled);
       return [...oldArray];
     });
   };
 
   useEffect(() => {
     if (isLoading) return;
+    console.log(isLoading);
     dispatch({ type: 'DATA_FETCH', payload: data });
   }, [data, isLoading]);
 
@@ -91,7 +92,7 @@ const Testing = memo(({ userInfo }) => {
     setButtonDisabled(false);
     setCheckedInputValues([...history[count]]);
   }, [count, history]);
-  console.log('SDf');
+
   return (
     <S.Wrapper as={'form'} onChange={buttonDisabledHandler}>
       <Progress count={{ count }} />

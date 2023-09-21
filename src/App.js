@@ -10,6 +10,7 @@ import HandQuestion from './pages/Testing/Hand';
 import NowUse from './pages/Testing/NowUse';
 import Three from './pages/Testing/Three';
 import Material from './pages/Testing/Material';
+import Color from './pages/Testing/Color';
 
 const App = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -48,7 +49,10 @@ const App = () => {
             path='/'
             element={<Home userInfo={userInfo} setUserInfo={setUserInfo} />}
           />
-          <Route path='testing' element={<Testing userInfo={userInfo ?? ''} />}>
+          <Route
+            path='/testing'
+            element={<Testing userInfo={userInfo ?? ''} />}
+          >
             <Route path='manufacturer' element={<ManufacturerQuestion />} />
             <Route path='model' element={<ModelQuestion />} />
             <Route path='hand-shape' element={<HandShapeQuestion />} />
@@ -56,7 +60,7 @@ const App = () => {
             <Route path='now-use' element={<NowUse />} />
             <Route path='three' element={<Three />} />
             <Route path='three/소재' element={<Material />} />
-            <Route path='three/색상' element={<Material />} />
+            <Route path='three/색상' element={<Color />} />
             <Route path='three/가격' element={<Material />} />
             <Route path='three/두께' element={<Material />} />
             <Route path='three/보호력' element={<Material />} />

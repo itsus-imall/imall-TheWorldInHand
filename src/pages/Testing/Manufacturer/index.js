@@ -1,10 +1,10 @@
 import { useOutletContext } from 'react-router-dom';
 import * as S from './styled';
 import { TestWrapper } from '../styled';
+import { memo } from 'react';
 
-const ManufacturerQuestion = () => {
+const ManufacturerQuestion = memo(() => {
   const { questions, history } = useOutletContext();
-
   return (
     <TestWrapper>
       {questions.map(({ value }) => {
@@ -29,6 +29,6 @@ const ManufacturerQuestion = () => {
       })}
     </TestWrapper>
   );
-};
+});
 
 export default ManufacturerQuestion;
