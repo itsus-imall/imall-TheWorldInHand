@@ -5,7 +5,7 @@ import { InputWrapper } from './Manufacturer/styled';
 export const Wrapper = styled(HomeWrapper)`
   justify-content: flex-start;
   padding-bottom: calc(var(--wrapper-padding) + 70px);
-  gap: 2rem;
+  gap: 1.5rem;
 `;
 
 export const NextButtonWrapper = styled.div`

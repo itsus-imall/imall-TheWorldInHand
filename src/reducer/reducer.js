@@ -135,8 +135,18 @@ const threeQuestionObj = {
   색상: {
     contents: {
       title: '선호하는 색상을\n골라주세요',
+      subTitle: '모두 선택해 주세요.',
     },
-    questions: [{ value: '기본 색상' }, { value: '추가 색상' }],
+    questions: [
+      { value: '블랙' },
+      { value: '투명' },
+      { value: '회색' },
+      { value: '보라색' },
+      { value: '파란색' },
+      { value: '노란색' },
+      { value: '녹색' },
+      { value: '자주색' },
+    ],
     nextChecked: -1,
     filter: true,
   },
