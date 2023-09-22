@@ -165,17 +165,22 @@ const threeQuestionObj = {
   },
   두께: {
     contents: {
-      title: '내게 딱 맞는\n두께를 선택해 주세요',
-      subTitle: '한 가지씩 선택해 주세요.',
+      title: '내가 선호하는\n두께를 선택해 주세요',
+      subTitle: '한 가지만 선택해 주세요.',
     },
-    questions: [{ value: '케이스의 소재' }, { value: '보호력' }],
+    questions: [
+      { value: '뛰어난 내구성과 충격완화가 장점인 소재' },
+      { value: '얇은 두께로 슬림한 소재' },
+      { value: '풀커버 보호로 높은 충격에도 강한 소재' },
+      { value: '지문 방지가 되는 매트한 소재' },
+    ],
     nextChecked: 2,
     filter: true,
   },
   보호력: {
     contents: {
       title: '사용하고 싶은\n필름을 선택해 주세요',
-      subTitle: '한 가지만 선택해 주세요.',
+      subTitle: '한 가지씩 선택해 주세요.',
     },
     questions: [
       { value: '스크래치 방지' },

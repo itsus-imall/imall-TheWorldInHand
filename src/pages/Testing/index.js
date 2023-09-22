@@ -31,10 +31,8 @@ const Testing = memo(({ userInfo }) => {
 
   const prevBtnClickHandler = event => {
     event.preventDefault();
-    setCheckedInputValues([]);
-    if (count !== 0) {
-      dispatch({ type: 'PREV' });
-    } else {
+    if (count !== 0) dispatch({ type: 'PREV' });
+    else {
       if (
         !window.confirm(
           '뒤로가시면 다시 시작하셔야 합니다.\n정말 나가시겠습니까?',
@@ -42,6 +40,7 @@ const Testing = memo(({ userInfo }) => {
       )
         return;
     }
+    setCheckedInputValues([]);
     navigate(-1);
   };
 
@@ -52,7 +51,6 @@ const Testing = memo(({ userInfo }) => {
       dataset: { toggle },
     } = event.target;
     const { nextChecked } = values;
-
     setCheckedInputValues(prev => {
       const oldArray = [...prev];
       const toggleIndex = toggle ? oldArray.indexOf(toggle) : -1;

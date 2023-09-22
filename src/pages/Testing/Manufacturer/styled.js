@@ -23,6 +23,8 @@ export const InputWrapper = styled.div`
     color: #000;
     p {
       font-size: 1rem;
+      word-break: keep-all;
+      line-height: 1.2;
     }
     span {
       font-weight: 400;
