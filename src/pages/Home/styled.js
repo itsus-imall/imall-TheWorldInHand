@@ -2,8 +2,7 @@ import { styled } from 'styled-components';
 
 export const Wrapper = styled.section`
   width: 100%;
-  margin-top: 44px;
-  height: calc(var(--vh, 1vh) * 100 - 44px);
+  height: calc(var(--vh, 1vh) * 100);
   display: flex;
   flex-direction: column;
   align-items: center;

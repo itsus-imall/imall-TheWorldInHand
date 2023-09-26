@@ -81,7 +81,6 @@ const Testing = memo(({ userInfo }) => {
 
   useEffect(() => {
     if (isLoading) return;
-    console.log(isLoading);
     dispatch({ type: 'DATA_FETCH', payload: data });
   }, [data, isLoading]);
 

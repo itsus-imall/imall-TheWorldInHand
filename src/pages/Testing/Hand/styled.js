@@ -6,11 +6,12 @@ export const HandInputWrapper = styled(InputWrapper)`
     padding: 1rem;
     p {
       font-size: 1rem;
+      text-transform: uppercase;
     }
     img {
       box-sizing: border-box;
       padding: 1rem;
-      background: #d9d9d9;
+      background: ${props => props.background};
       border-radius: 50%;
       width: 80%;
       margin-bottom: 0.5rem;

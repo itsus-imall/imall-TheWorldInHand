@@ -102,16 +102,120 @@ const questionsObj = [
   },
   {
     contents: {
-      title: 'test',
-      subTitle: 'test',
+      title: '선호하는 브랜드가\n있나요?',
+      subTitle: '모두 선택해 주세요',
     },
     questions: [
       {
-        value: '1',
+        value: '168cm',
+      },
+      {
+        value: '디자인스킨',
+      },
+      {
+        value: '에이블리',
+      },
+      {
+        value: '케이스티파이',
+      },
+      {
+        value: '아이디어스',
+      },
+      {
+        value: '지그재그',
+      },
+      {
+        value: '오프라인',
+      },
+      {
+        value: '없음,모르겠음',
       },
     ],
-    nextURL: null,
-    nextChecked: 3,
+    nextURL: 'quantity',
+    nextChecked: -1,
+  },
+  {
+    contents: {
+      title: '지난 1년 동안\n사용했던 케이스/필름\n개수는 어떻게 되나요?',
+    },
+    questions: [
+      {
+        value: '케이스 개수',
+      },
+      {
+        value: '필름 개수',
+      },
+    ],
+    nextURL: 'besideProducts',
+    nextChecked: 0,
+  },
+  {
+    contents: {
+      title: '추가로 사용하는\n기기가 있으신가요?',
+      subTitle: '모두 선택해 주세요.',
+    },
+    questions: [
+      {
+        value: '아이패드',
+      },
+      {
+        value: '갤럭시 탭',
+      },
+      {
+        value: '에어팟',
+      },
+      {
+        value: '버즈',
+      },
+      {
+        value: '애플워치',
+      },
+      {
+        value: '갤럭시워치',
+      },
+      {
+        value: '맥북',
+      },
+      {
+        value: '에어팟맥스',
+      },
+      {
+        value: '그외,해당없음',
+      },
+    ],
+    nextURL: 'howImall',
+    nextChecked: -1,
+  },
+  {
+    contents: {
+      title: '아이몰을 어떻게\n알게 되셨나요?',
+      subTitle: '모두 선택해 주세요',
+    },
+    questions: [
+      {
+        value: '페이스북/인스타그램 광고',
+      },
+      {
+        value: '틱톡',
+      },
+      {
+        value: '지인의 추천',
+      },
+      {
+        value: '네이버',
+      },
+      {
+        value: '쿠팡',
+      },
+      {
+        value: '에이블리',
+      },
+      {
+        value: '카카오 선물하기',
+      },
+    ],
+    nextURL: '/result',
+    nextChecked: -1,
   },
 ];
 

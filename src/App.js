@@ -42,7 +42,6 @@ const App = () => {
 
   return (
     <>
-      <nav></nav>
       <BrowserRouter>
         <Routes>
           <Route
@@ -56,7 +55,12 @@ const App = () => {
             <Route path='manufacturer' element={<ManufacturerQuestion />} />
             <Route path='model' element={<ModelQuestion />} />
             <Route path='hand-shape' element={<HandShapeQuestion />} />
-            <Route path='hand' element={<HandQuestion />} />
+            <Route
+              path='hand'
+              element={
+                <HandQuestion background='#d9d9d9' imgSrc='260x260_03_' />
+              }
+            />
             <Route path='now-use' element={<NowUse />} />
             <Route path='three' element={<Three type='three' />} />
             <Route path='three/소재' element={<Material type='소재' />} />
@@ -64,6 +68,10 @@ const App = () => {
             <Route path='three/가격' element={<Three />} />
             <Route path='three/두께' element={<Three />} />
             <Route path='three/보호력' element={<Material type='보호력' />} />
+            <Route
+              path='brand'
+              element={<HandQuestion imgSrc='260x260_06_' />}
+            />
           </Route>
           <Route path='result' element={<Result />} />
         </Routes>

@@ -172,14 +172,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-nav {
-  height: 44px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: #fff;
-  width: 100%;
-}
 button {
   cursor: pointer;
 }
