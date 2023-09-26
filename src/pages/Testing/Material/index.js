@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation, useOutletContext } from 'react-router-dom';
 
 import ToggleMenu from '../../../components/ToggleMenu';
 import {
@@ -9,24 +9,30 @@ import {
   ToggleInputWrapper,
 } from '../styled';
 
-const inputValues = {
-  케이스: [
-    '무거운 게 불편해요',
-    '튼튼하지 않은 것 같아요',
-    '금방 누래져요',
-    '지문이 쉽게 묻어요',
-    '불편한 점이 없어요',
+const inputValuesObj = {
+  소재: [
+    [
+      '무거운 게 불편해요',
+      '튼튼하지 않은 것 같아요',
+      '금방 누래져요',
+      '지문이 쉽게 묻어요',
+      '불편한 점이 없어요',
+    ],
+    [
+      '너무 두꺼워요',
+      '지문이 너무 묻어요',
+      '필름이 연약해요',
+      '풀커버였으면 좋겠어요',
+      '불편한 점 없어요',
+    ],
   ],
-  필름: [
-    '너무 두꺼워요',
-    '지문이 너무 묻어요',
-    '필름이 연약해요',
-    '풀커버였으면 좋겠어요',
-    '불편한 점 없어요',
+  보호력: [
+    ['스크래치 방지', '지문 방지', '프라이버시', '우수한 화질', '카메라 보호'],
+    ['맞다', '아니다'],
   ],
 };
 
-const Material = () => {
+const Material = ({ type }) => {
   const { questions, history } = useOutletContext();
   const [toggle, setToggle] = useState('0');
 
@@ -36,13 +42,15 @@ const Material = () => {
     }, 400);
   };
 
+  useEffect(() => setToggle('0'), [type]);
+  const inputValues = inputValuesObj[type];
   return (
     <>
       <ToggleMenu questions={questions} toggle={toggle} setToggle={setToggle} />
       <TestToggleWrapper>
         <TestToggleViewWrapper toggle={toggle}>
           <TestToggleContentWrapper style={{ marginRight: '1rem' }}>
-            {inputValues.케이스.map(value => {
+            {inputValues[0].map(value => {
               const isValueInHistory = history && history.includes(value);
               return (
                 <ToggleInputWrapper key={value}>
@@ -63,7 +71,7 @@ const Material = () => {
             })}
           </TestToggleContentWrapper>
           <TestToggleContentWrapper>
-            {inputValues.필름.map(value => {
+            {inputValues[1].map(value => {
               const isValueInHistory = history && history.includes(value);
               return (
                 <ToggleInputWrapper key={value}>

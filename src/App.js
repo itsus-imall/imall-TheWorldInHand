@@ -59,11 +59,11 @@ const App = () => {
             <Route path='hand' element={<HandQuestion />} />
             <Route path='now-use' element={<NowUse />} />
             <Route path='three' element={<Three type='three' />} />
-            <Route path='three/소재' element={<Material />} />
+            <Route path='three/소재' element={<Material type='소재' />} />
             <Route path='three/색상' element={<Color />} />
             <Route path='three/가격' element={<Three />} />
             <Route path='three/두께' element={<Three />} />
-            <Route path='three/보호력' element={<Material />} />
+            <Route path='three/보호력' element={<Material type='보호력' />} />
           </Route>
           <Route path='result' element={<Result />} />
         </Routes>

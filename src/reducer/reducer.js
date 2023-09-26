@@ -174,22 +174,16 @@ const threeQuestionObj = {
       { value: '풀커버 보호로 높은 충격에도 강한 소재' },
       { value: '지문 방지가 되는 매트한 소재' },
     ],
-    nextChecked: 2,
+    nextChecked: 1,
     filter: true,
   },
   보호력: {
     contents: {
-      title: '사용하고 싶은\n필름을 선택해 주세요',
+      title: '필름에 원하는 보호기능을\n선택해 주세요!',
       subTitle: '한 가지씩 선택해 주세요.',
     },
-    questions: [
-      { value: '스크래치 방지' },
-      { value: '지문 방지' },
-      { value: '프라이버시' },
-      { value: '우수한 화질' },
-      { value: '카메라 보호' },
-    ],
-    nextChecked: 1,
+    questions: [{ value: '필름 기능' }, { value: '자주 떨어트리나요?' }],
+    nextChecked: 2,
     filter: true,
   },
 };
