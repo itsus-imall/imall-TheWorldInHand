@@ -12,7 +12,8 @@ export const HandInputWrapper = styled(InputWrapper)`
       box-sizing: border-box;
       padding: 1rem;
       background: ${props => props.background};
-      border-radius: 50%;
+      border-radius: ${props =>
+        props.background === 'transparent' ? 0 : '50%'};
       width: 80%;
       margin-bottom: 0.5rem;
     }

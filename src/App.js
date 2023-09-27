@@ -69,10 +69,14 @@ const App = () => {
             <Route path='three/가격' element={<Three />} />
             <Route path='three/두께' element={<Three />} />
             <Route path='three/보호력' element={<Material type='보호력' />} />
-            <Route path='quantity' element={<Quantity />} />
             <Route
               path='brand'
               element={<HandQuestion imgSrc='260x260_06_' />}
+            />
+            <Route path='quantity' element={<Quantity />} />
+            <Route
+              path='besideProducts'
+              element={<HandQuestion imgSrc='260x260_07_' />}
             />
           </Route>
           <Route path='result' element={<Result />} />

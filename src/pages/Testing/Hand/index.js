@@ -35,9 +35,7 @@ const HandQuestion = ({ background = 'transparent', imgSrc }) => {
               <img
                 src={`/images/테스트페이지/${imgSrc}${value}.png`}
                 alt='hand'
-                onError={e =>
-                  (e.target.src = `/images/테스트페이지/${value}.png`)
-                }
+                onError={e => (e.target.src = `/images/테스트페이지/없음.png`)}
               />
               <p>{value}</p>
             </label>

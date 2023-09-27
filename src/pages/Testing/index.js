@@ -82,13 +82,20 @@ const Testing = memo(({ userInfo }) => {
     });
   };
 
-  const test = event => {
+  const inputNumberHandler = event => {
     const { name, value } = event.target;
-    if (value.length > 3) return;
     setCheckedInputValues(prev => {
       const index = name === '케이스' ? 0 : 1;
       const newArray = [...prev];
       newArray.splice(index, 1, value);
+      if (
+        !newArray[0] ||
+        !newArray[1] ||
+        newArray[0].length > 3 ||
+        newArray[1].length > 3
+      )
+        setButtonDisabled(true);
+      else setButtonDisabled(false);
       return newArray;
     });
   };
@@ -107,7 +114,7 @@ const Testing = memo(({ userInfo }) => {
   return (
     <S.Wrapper
       as={'form'}
-      onChange={quantityMatch ? test : inputCheckedHandler}
+      onChange={quantityMatch ? inputNumberHandler : inputCheckedHandler}
     >
       <Progress count={{ count }} />
       <Title contents={values.contents} />

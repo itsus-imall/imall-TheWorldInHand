@@ -29,10 +29,10 @@ const inputValues = {
       summary: '구름같이 말랑',
     },
     {
-      value: '없음,모르겠음',
+      value: '없음/모르겠음',
     },
   ],
-  필름: ['강화유리', '지문방지', '프라이버시', '블루라이트', '없음, 모르겠음'],
+  필름: ['강화유리', '지문방지', '프라이버시', '블루라이트', '없음,모르겠음'],
 };
 
 const NowUse = () => {
@@ -70,7 +70,7 @@ const NowUse = () => {
                       src={`/images/테스트페이지/${value}.svg`}
                       alt={value}
                       onError={e =>
-                        (e.target.src = `/images/테스트페이지/${value}.png`)
+                        (e.target.src = `/images/테스트페이지/없음.png`)
                       }
                     />
                   </label>

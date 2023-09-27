@@ -128,7 +128,7 @@ const questionsObj = [
         value: '오프라인',
       },
       {
-        value: '없음,모르겠음',
+        value: '없음/모르겠음',
       },
     ],
     nextURL: 'quantity',
@@ -159,7 +159,7 @@ const questionsObj = [
         value: '아이패드',
       },
       {
-        value: '갤럭시 탭',
+        value: '갤럭시탭',
       },
       {
         value: '에어팟',
@@ -180,7 +180,7 @@ const questionsObj = [
         value: '에어팟맥스',
       },
       {
-        value: '그외,해당없음',
+        value: '그외/해당없음',
       },
     ],
     nextURL: 'howImall',
