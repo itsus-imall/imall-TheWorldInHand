@@ -11,6 +11,7 @@ import NowUse from './pages/Testing/NowUse';
 import Three from './pages/Testing/Three';
 import Material from './pages/Testing/Material';
 import Color from './pages/Testing/Color';
+import Quantity from './pages/Testing/Quantity';
 
 const App = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -68,6 +69,7 @@ const App = () => {
             <Route path='three/가격' element={<Three />} />
             <Route path='three/두께' element={<Three />} />
             <Route path='three/보호력' element={<Material type='보호력' />} />
+            <Route path='quantity' element={<Quantity />} />
             <Route
               path='brand'
               element={<HandQuestion imgSrc='260x260_06_' />}

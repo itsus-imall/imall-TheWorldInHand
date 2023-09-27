@@ -1,5 +1,5 @@
 import { memo, useEffect, useReducer, useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useMatch, useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { getQuestion } from '../../services/apis';
 
@@ -11,6 +11,7 @@ import { initalState, questionReducer } from '../../reducer/reducer';
 
 const Testing = memo(({ userInfo }) => {
   const navigate = useNavigate();
+  const quantityMatch = useMatch('testing/quantity');
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [checkedInputValues, setCheckedInputValues] = useState([]);
   const { isLoading, data } = useQuery(['question'], getQuestion);
@@ -19,7 +20,7 @@ const Testing = memo(({ userInfo }) => {
     initalState,
   );
   if (!userInfo) navigate('/');
-
+  console.log(checkedInputValues);
   const nextBtnClickHandler = () => {
     if (values.filter)
       dispatch({ type: 'FILTER', payload: checkedInputValues });
@@ -44,16 +45,15 @@ const Testing = memo(({ userInfo }) => {
     navigate(-1);
   };
 
-  const buttonDisabledHandler = event => {
+  const inputCheckedHandler = event => {
     const {
       value,
       checked,
-      dataset: { toggle },
+      dataset: { toggle = -1 },
     } = event.target;
     const { nextChecked } = values;
     setCheckedInputValues(prev => {
       const oldArray = [...prev];
-      const toggleIndex = toggle ? oldArray.indexOf(toggle) : -1;
       const valueIndex = oldArray.indexOf(value);
 
       if (nextChecked === 1) {
@@ -62,9 +62,12 @@ const Testing = memo(({ userInfo }) => {
       }
 
       if (checked) {
-        if (toggleIndex !== -1) oldArray[toggleIndex] = value;
-        else if (oldArray.length === nextChecked) oldArray.shift();
-        oldArray.push(value);
+        if (toggle !== -1) oldArray[toggle] = value;
+        else {
+          oldArray.push(value);
+          if (nextChecked !== -1 && oldArray.length > nextChecked)
+            oldArray.shift();
+        }
       } else if (valueIndex !== -1) {
         oldArray.splice(valueIndex, 1);
       }
@@ -76,6 +79,17 @@ const Testing = memo(({ userInfo }) => {
 
       setButtonDisabled(isButtonDisabled);
       return [...oldArray];
+    });
+  };
+
+  const test = event => {
+    const { name, value } = event.target;
+    if (value.length > 3) return;
+    setCheckedInputValues(prev => {
+      const index = name === '케이스' ? 0 : 1;
+      const newArray = [...prev];
+      newArray.splice(index, 1, value);
+      return newArray;
     });
   };
 
@@ -91,7 +105,10 @@ const Testing = memo(({ userInfo }) => {
   }, [count, history]);
 
   return (
-    <S.Wrapper as={'form'} onChange={buttonDisabledHandler}>
+    <S.Wrapper
+      as={'form'}
+      onChange={quantityMatch ? test : inputCheckedHandler}
+    >
       <Progress count={{ count }} />
       <Title contents={values.contents} />
       <Outlet

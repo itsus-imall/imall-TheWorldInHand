@@ -1,9 +1,23 @@
-import { useOutletContext } from 'react-router-dom';
+import { useMatch, useOutletContext } from 'react-router-dom';
 import * as S from './styled';
 import { TestWrapper } from '../styled';
+import Loading from '../../../components/Loading';
+import { useEffect, useState } from 'react';
 
 const HandQuestion = ({ background = 'transparent', imgSrc }) => {
+  const brandMatch = useMatch('testing/brand');
+  const [loading, setLoading] = useState(brandMatch ? true : false);
   const { questions, history } = useOutletContext();
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setLoading(false), 3000);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  if (brandMatch && loading) {
+    return <Loading count='1' />;
+  }
+
   return (
     <TestWrapper>
       {questions.map(({ value }) => {
