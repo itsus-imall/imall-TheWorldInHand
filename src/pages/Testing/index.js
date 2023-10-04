@@ -9,9 +9,10 @@ import Progress from '../../components/Progress';
 import Title from '../../components/Title';
 import { initalState, questionReducer } from '../../reducer/reducer';
 
-const Testing = memo(({ userInfo }) => {
+const Testing = memo(({ userInfo, setQuestionResult }) => {
   const navigate = useNavigate();
   const quantityMatch = useMatch('testing/quantity');
+  const howImallMatch = useMatch('testing/howImall');
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [checkedInputValues, setCheckedInputValues] = useState([]);
   const { isLoading, data } = useQuery(['question'], getQuestion);
@@ -20,14 +21,16 @@ const Testing = memo(({ userInfo }) => {
     initalState,
   );
   if (!userInfo) navigate('/');
-  console.log(checkedInputValues);
   const nextBtnClickHandler = () => {
     if (values.filter)
       dispatch({ type: 'FILTER', payload: checkedInputValues });
     dispatch({ type: 'NEXT', payload: checkedInputValues });
     setButtonDisabled(true);
     setCheckedInputValues([]);
-    navigate(values.filter ? `three/${checkedInputValues[0]}` : values.nextURL);
+    navigate(
+      values.filter ? `three/${checkedInputValues[0]}` : values.nextURL,
+      howImallMatch ? { state: [...history, checkedInputValues] } : {},
+    );
   };
 
   const prevBtnClickHandler = event => {

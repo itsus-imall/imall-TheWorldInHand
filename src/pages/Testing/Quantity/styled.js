@@ -9,6 +9,7 @@ export const QuantityWrapper = styled(TestWrapper)`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    padding-bottom: 100px;
     div {
       position: relative;
       &::after {
@@ -28,6 +29,23 @@ export const QuantityWrapper = styled(TestWrapper)`
         padding: 0.7rem 1.5rem 1rem 1rem;
         border-radius: 10px;
         border: 0;
+        transition: border 0.3s;
+        outline: none;
+      }
+      &.overflow input {
+        border: 3px solid red;
+      }
+      &.overflow::before {
+        content: '999개 이하로 입력해 주세요.';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 120%);
+        color: #000;
+        z-index: 2;
+        color: red;
+        font-size: 0.7rem;
+        line-height: 1.2;
       }
     }
   }

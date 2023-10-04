@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 const HandQuestion = ({ background = 'transparent', imgSrc }) => {
   const brandMatch = useMatch('testing/brand');
   const howImallMatch = useMatch('testing/howImall');
-  console.log(howImallMatch);
   const [loading, setLoading] = useState(brandMatch ? true : false);
   const { questions, history } = useOutletContext();
 
