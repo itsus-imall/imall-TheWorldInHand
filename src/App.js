@@ -78,6 +78,7 @@ const App = () => {
               path='besideProducts'
               element={<HandQuestion imgSrc='260x260_07_' />}
             />
+            <Route path='howimall' element={<HandQuestion />} />
           </Route>
           <Route path='result' element={<Result />} />
         </Routes>

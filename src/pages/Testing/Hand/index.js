@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 
 const HandQuestion = ({ background = 'transparent', imgSrc }) => {
   const brandMatch = useMatch('testing/brand');
+  const howImallMatch = useMatch('testing/howImall');
+  console.log(howImallMatch);
   const [loading, setLoading] = useState(brandMatch ? true : false);
   const { questions, history } = useOutletContext();
 
@@ -23,7 +25,11 @@ const HandQuestion = ({ background = 'transparent', imgSrc }) => {
       {questions.map(({ value }) => {
         const isValueInHistory = history && history.includes(value);
         return (
-          <S.HandInputWrapper key={value} background={background}>
+          <S.HandInputWrapper
+            key={value}
+            background={background}
+            long={!!howImallMatch}
+          >
             <input
               id={value}
               name='hand'
@@ -32,11 +38,15 @@ const HandQuestion = ({ background = 'transparent', imgSrc }) => {
               defaultChecked={isValueInHistory}
             />
             <label htmlFor={value}>
-              <img
-                src={`/images/테스트페이지/${imgSrc}${value}.png`}
-                alt='hand'
-                onError={e => (e.target.src = `/images/테스트페이지/없음.png`)}
-              />
+              {howImallMatch ? null : (
+                <img
+                  src={`/images/테스트페이지/${imgSrc}${value}.png`}
+                  alt='hand'
+                  onError={e =>
+                    (e.target.src = `/images/테스트페이지/없음.png`)
+                  }
+                />
+              )}
               <p>{value}</p>
             </label>
           </S.HandInputWrapper>

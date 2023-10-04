@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { InputWrapper } from '../Manufacturer/styled';
 
 export const HandInputWrapper = styled(InputWrapper)`
+  flex: ${props => (props.long ? '0 0 100%' : '0 0 calc(50% - 1rem / 2)')};
   label {
     padding: 1rem;
     p {
