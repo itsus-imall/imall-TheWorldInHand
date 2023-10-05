@@ -7,7 +7,7 @@ const Home = React.memo(({ userInfo, setUserInfo }) => {
   const getUserInfoHandler = useCallback(
     event => {
       if (event.origin === 'http://localhost:3000') {
-        setUserInfo({ userId: 'wmh1245', type: 'handTest' }); // 아이프레임 실제
+        setUserInfo({ userId: 'wmh1245', type: 'hand' }); // 아이프레임 실제
         window.removeEventListener('message', getUserInfoHandler);
       }
       if (

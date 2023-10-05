@@ -20,5 +20,6 @@ export const Wrapper = styled.div`
   }
   p {
     font-size: 0.8rem;
+    color: #fff;
   }
 `;

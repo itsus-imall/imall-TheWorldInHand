@@ -80,7 +80,7 @@ const App = () => {
             />
             <Route path='howimall' element={<HandQuestion />} />
           </Route>
-          <Route path='result' element={<Result />} />
+          <Route path='result' element={<Result userInfo={userInfo} />} />
         </Routes>
       </BrowserRouter>
     </>
