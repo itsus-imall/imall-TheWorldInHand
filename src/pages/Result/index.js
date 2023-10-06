@@ -4,25 +4,21 @@ import Loading from '../../components/Loading';
 
 import * as S from './styled';
 import { Wrapper } from '../Home/styled';
-import axios from 'axios';
+import { getMemo } from '../../services/apis';
+import { suggestionProductsFilter } from '../../utils/filter';
 
 const Result = memo(({ userInfo }) => {
   const { state: history } = useLocation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-
   const resultHandler = useCallback(async () => {
-    const {
-      data: { point, result },
-    } = await axios.post(
-      'https://itsus.co.kr:5555/api/imall/getMemo',
-      userInfo,
-    );
-    setLoading(false);
-  }, [userInfo]);
+    const suggestionProducts = await suggestionProductsFilter(history);
+    const { point, result } = await getMemo(userInfo);
+  }, [userInfo, history]);
 
   useEffect(() => {
     history && userInfo ? resultHandler() : navigate('/');
+    setLoading(false);
   }, [history, navigate, userInfo, resultHandler]);
 
   if (loading) return <Loading count='2' />;

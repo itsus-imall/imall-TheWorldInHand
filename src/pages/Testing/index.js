@@ -20,6 +20,7 @@ const Testing = memo(({ userInfo, setQuestionResult }) => {
     questionReducer,
     initalState,
   );
+
   if (!userInfo) navigate('/');
   const nextBtnClickHandler = () => {
     if (values.filter)

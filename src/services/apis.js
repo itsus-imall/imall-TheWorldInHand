@@ -6,3 +6,11 @@ export const getQuestion = async () => {
   );
   return data;
 };
+
+export const getMemo = async userInfo => {
+  const { data } = await axios.post(
+    'https://itsus.co.kr:5555/api/imall/getMemo',
+    userInfo,
+  );
+  return data;
+};
