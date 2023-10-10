@@ -14,19 +14,19 @@ const Result = memo(({ userInfo }) => {
   const [productsInfo, setProductsInfo] = useState([]);
 
   const resultHandler = useCallback(async () => {
+    console.log('aaa');
     const suggestionProducts = await suggestionProductsFilter(history);
     const productsInfo = await getProductsInfo(
       suggestionProducts.length === 0
-        ? history[0] === '삼성'
-          ? [1027]
-          : [226]
+        ? [history[0] === '삼성' ? 1027 : 226]
         : suggestionProducts,
     );
     setProductsInfo(productsInfo);
-    const { point, result } = await getMemo(userInfo);
-  }, [userInfo, history]);
+    const data = await getMemo(userInfo, history);
+    console.log(data);
+  }, []);
 
-  console.log(productsInfo);
+  console.log(userInfo, history);
 
   useEffect(() => {
     history && userInfo ? resultHandler() : navigate('/');
