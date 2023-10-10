@@ -14,3 +14,13 @@ export const getMemo = async userInfo => {
   );
   return data;
 };
+
+export const getProductsInfo = async suggestionProducts => {
+  const {
+    data: { products },
+  } = await axios.post(
+    'https://itsus.co.kr:5555/api/imall/productsInfo',
+    suggestionProducts,
+  );
+  return products;
+};

@@ -4,17 +4,29 @@ import Loading from '../../components/Loading';
 
 import * as S from './styled';
 import { Wrapper } from '../Home/styled';
-import { getMemo } from '../../services/apis';
+import { getMemo, getProductsInfo } from '../../services/apis';
 import { suggestionProductsFilter } from '../../utils/filter';
 
 const Result = memo(({ userInfo }) => {
   const { state: history } = useLocation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [productsInfo, setProductsInfo] = useState([]);
+
   const resultHandler = useCallback(async () => {
     const suggestionProducts = await suggestionProductsFilter(history);
+    const productsInfo = await getProductsInfo(
+      suggestionProducts.length === 0
+        ? history[0] === '삼성'
+          ? [1027]
+          : [226]
+        : suggestionProducts,
+    );
+    setProductsInfo(productsInfo);
     const { point, result } = await getMemo(userInfo);
   }, [userInfo, history]);
+
+  console.log(productsInfo);
 
   useEffect(() => {
     history && userInfo ? resultHandler() : navigate('/');
