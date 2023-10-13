@@ -14,7 +14,6 @@ const Result = memo(({ userInfo }) => {
   const [productsInfo, setProductsInfo] = useState([]);
 
   const resultHandler = useCallback(async () => {
-    console.log('aaa');
     const suggestionProducts = await suggestionProductsFilter(history);
     const productsInfo = await getProductsInfo(
       suggestionProducts.length === 0
@@ -23,10 +22,7 @@ const Result = memo(({ userInfo }) => {
     );
     setProductsInfo(productsInfo);
     const data = await getMemo(userInfo, history);
-    console.log(data);
-  }, []);
-
-  console.log(userInfo, history);
+  }, [history, userInfo]);
 
   useEffect(() => {
     history && userInfo ? resultHandler() : navigate('/');
@@ -46,6 +42,22 @@ const Result = memo(({ userInfo }) => {
           </h2>
           <p>어떻게 추천되었나요?</p>
         </div>
+        <S.ProductWrapper>
+          <ul>
+            {productsInfo.map((product, index) => {
+              return (
+                <li key={product.product_no}>
+                  <img
+                    src={product.detail_image}
+                    alt={product.custom_product_code}
+                  />
+                  <p>{product.product_name}</p>
+                  <span>{Number(product.price).toLocaleString()}원</span>
+                </li>
+              );
+            })}
+          </ul>
+        </S.ProductWrapper>
       </S.ResultWrapper>
     </Wrapper>
   );

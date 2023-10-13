@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ResultWrapper = styled.div`
+export const ResultWrapper = styled.section`
   width: 100%;
   overflow-y: scroll;
   background: #fff;
@@ -21,6 +21,17 @@ export const ResultWrapper = styled.div`
       color: #fff;
       border-radius: 10px;
       padding: 0.5rem 1rem;
+    }
+  }
+`;
+
+export const ProductWrapper = styled.section`
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    li {
+      flex: 0 0 calc(50% - 10px);
     }
   }
 `;

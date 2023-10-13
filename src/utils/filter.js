@@ -31,23 +31,32 @@ export const suggestionProductsFilter = async payload => {
         return number[payload[index + 6][productIndex]];
       });
     })
-    .map(array => array[0]);
+    .map(array => [...new Set(array[0])]);
   const result = findDuplicates(suggestionProductsNumber);
+  console.log(suggestionProductsNumber, result);
   return result;
 };
 
 const findDuplicates = arr => {
-  const flattenedArray = arr.flat();
-  const uniqueNumbers = new Set();
-  const duplicates = new Set();
+  // 2차원 배열을 1차원 배열로 평탄화
+  const flatArray = arr.reduce((acc, curr) => acc.concat(curr), []);
 
-  for (const num of flattenedArray) {
-    if (uniqueNumbers.has(num)) {
-      duplicates.add(num);
-    } else {
-      uniqueNumbers.add(num);
+  // 중복된 값들을 제거
+  const uniqueArray = [...new Set(flatArray)];
+
+  // 1보다 큰 개수를 가진 중복된 값을 찾음
+  const duplicates = uniqueArray.filter(
+    value => flatArray.filter(v => v === value).length > 1,
+  );
+
+  // 중복된 값 중에서 1개만 남기기
+  const finalArray = flatArray.filter(value => {
+    if (duplicates.includes(value)) {
+      duplicates.splice(duplicates.indexOf(value), 1);
+      return true;
     }
-  }
+    return false;
+  });
 
-  return Array.from(duplicates);
+  return finalArray;
 };
