@@ -10,18 +10,21 @@ import {
   getProductsRank,
   updateMemo,
 } from '../../services/apis';
-import { suggestionProductsFilter, sumTotalSales } from '../../utils/filter';
+import {
+  sortProductsByRank,
+  suggestionProductsFilter,
+  sumTotalSales,
+} from '../../utils/filter';
 
 const Result = memo(({ userInfo }) => {
   const { state: history } = useLocation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [productsInfo, setProductsInfo] = useState([]);
-  const [productsRank, setProductsRank] = useState(null);
   const [productsMore, setProductsMore] = useState(true);
 
   const resultHandler = useCallback(async () => {
-    const data = await getMemo(userInfo, history);
+    // const data = await getMemo(userInfo, history);
     // if (
     //   data &&
     //   window.confirm(
@@ -32,14 +35,14 @@ const Result = memo(({ userInfo }) => {
     // }
     const suggestionProducts = await suggestionProductsFilter(history);
     const productsInfo = await getProductsInfo(suggestionProducts);
-    const productsRank = await getProductsRank(suggestionProducts);
-    const result = sumTotalSales(productsRank);
-    setProductsRank(result);
-    setProductsInfo(productsInfo);
+    const productsRank = sumTotalSales(
+      await getProductsRank(suggestionProducts),
+    );
+    const result = sortProductsByRank(productsInfo, productsRank);
+    setProductsInfo(result);
     setLoading(false);
   }, [history, userInfo]);
 
-  console.log(productsInfo, productsRank);
   useEffect(() => {
     history && userInfo ? resultHandler() : navigate('/');
   }, [history, navigate, userInfo, resultHandler]);
@@ -59,19 +62,19 @@ const Result = memo(({ userInfo }) => {
         </div>
         <S.ProductWrapper buttonHide={productsMore}>
           <ul>
-            {productsRank?.map((product, index) => {
-              // if (!productsMore && index >= 4) {
-              //   setProductsMore(false);
-              //   return null;
-              // }
-              const info = productsInfo.find(
-                info => info.product_no === product.product_no,
-              );
+            {productsInfo.map((product, index) => {
+              if (!productsMore && index >= 4) {
+                setProductsMore(false);
+                return null;
+              }
               return (
-                <li key={info.product_no}>
-                  <img src={info.detail_image} alt={info.custom_product_code} />
-                  <p>{info.product_name}</p>
-                  <span>{Number(info.price).toLocaleString()}원</span>
+                <li key={product.product_no}>
+                  <img
+                    src={product.detail_image}
+                    alt={product.custom_product_code}
+                  />
+                  <p>{product.product_name}</p>
+                  <span>{Number(product.price).toLocaleString()}원</span>
                 </li>
               );
             })}

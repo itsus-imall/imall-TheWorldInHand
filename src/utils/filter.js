@@ -75,3 +75,25 @@ const findDuplicates = arr => {
   });
   return finalArray;
 };
+
+export const sortProductsByRank = (productsInfo, productsRank) => {
+  const rankedProducts = productsInfo.slice(); // 복사해서 새로운 배열 생성
+
+  // 순위 정보를 가진 상품을 오름차순으로 정렬
+  rankedProducts.sort((a, b) => {
+    const rankA = productsRank.find(rank => rank.product_no === a.product_no);
+    const rankB = productsRank.find(rank => rank.product_no === b.product_no);
+
+    if (rankA && rankB) {
+      return rankA.rank - rankB.rank;
+    } else if (rankA) {
+      return -1; // a에만 순위 정보가 있는 경우
+    } else if (rankB) {
+      return 1; // b에만 순위 정보가 있는 경우
+    } else {
+      return 0; // 둘 다 순위 정보가 없는 경우
+    }
+  });
+
+  return rankedProducts;
+};
