@@ -23,6 +23,10 @@ const Home = React.memo(({ userInfo, setUserInfo }) => {
     [setUserInfo],
   );
 
+  const loginHandler = () => {
+    window.parent.postMessage({ status: 'login-check', value: 'login' }, '*');
+  };
+
   useEffect(() => {
     if (userInfo) window.removeEventListener('message', getUserInfoHandler);
     window.addEventListener('message', event => getUserInfoHandler(event));
@@ -49,7 +53,7 @@ const Home = React.memo(({ userInfo, setUserInfo }) => {
         {userInfo ? (
           <Link to='testing/manufacturer'>시작하기</Link>
         ) : (
-          <button>로그인 하기</button>
+          <button onClick={loginHandler}>로그인 하기</button>
         )}
         <p>
           버튼 클릭 시 <span>개인 정보 제공 및 취급 동의</span> 한 것으로 처리

@@ -34,4 +34,7 @@ export const ProductWrapper = styled.section`
       flex: 0 0 calc(50% - 10px);
     }
   }
+  button {
+    display: ${({ buttonHide }) => (!buttonHide ? 'block' : 'none')};
+  }
 `;
