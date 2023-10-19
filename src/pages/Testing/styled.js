@@ -78,6 +78,7 @@ export const TestToggleViewWrapper = styled.div`
     ${props => (props.toggle === '0' ? '0%' : 'calc(-100% - 1rem)')}
   );
   align-items: baseline;
+  transition: 0.3s;
 `;
 
 export const TestToggleContentWrapper = styled.div`

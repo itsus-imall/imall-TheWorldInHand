@@ -30,15 +30,15 @@ const Result = memo(({ userInfo }) => {
   const suggestionRef = useRef(null);
 
   const resultHandler = useCallback(async () => {
-    // const data = await getMemo(userInfo, history);
-    // if (
-    //   data &&
-    //   window.confirm(
-    //     '이미 한번 진행 하셨습니다. 데이터를 업데이트 하시겠습니까?\n(업데이트를 해도 포인트는 지급되지 않습니다.)',
-    //   )
-    // ) {
-    //   updateMemo(userInfo, history);
-    // }
+    const data = await getMemo(userInfo, history);
+    if (
+      data &&
+      window.confirm(
+        '이미 한번 진행 하셨습니다. 데이터를 업데이트 하시겠습니까?\n(업데이트를 해도 포인트는 지급되지 않습니다.)',
+      )
+    ) {
+      updateMemo(userInfo, history);
+    }
     const suggestionProducts = await suggestionProductsFilter(history);
     const productsInfo = await getProductsInfo(suggestionProducts);
     const productsRank = sumTotalSales(
