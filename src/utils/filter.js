@@ -97,3 +97,10 @@ export const sortProductsByRank = (productsInfo, productsRank) => {
 
   return rankedProducts;
 };
+
+export const maskText = text => {
+  if (text === '네이버 페이 구매자' || text === '비회원' || text.length < 4)
+    return text;
+  const maskedPart = '*'.repeat(text.length - 3); // 4글자 이상의 부분을 "*"로 대체
+  return text.substring(0, 3) + maskedPart;
+};

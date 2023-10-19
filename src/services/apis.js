@@ -36,3 +36,8 @@ export const getProductsRank = async productsNumber => {
   } = await axios.post(`${BASE_URL}/getProductsSale`, productsNumber);
   return salesvolume;
 };
+
+export const getReview = async () => {
+  const { data } = await axios.get(`${BASE_URL}/handReviewData`);
+  return data;
+};

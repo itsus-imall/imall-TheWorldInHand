@@ -347,5 +347,4 @@ const threeQuestionFilter = (payload, history) => {
     copyObj.nextURL = index === 2 ? 'brand' : `three/${payload[index + 1]}`;
     questionsObj.splice(startIndex + index, 0, copyObj);
   });
-  console.log(questionsObj);
 };

@@ -77,7 +77,6 @@ export const TestToggleViewWrapper = styled.div`
   transform: translateX(
     ${props => (props.toggle === '0' ? '0%' : 'calc(-100% - 1rem)')}
   );
-  transition: 0.3s;
   align-items: baseline;
 `;
 
