@@ -105,6 +105,7 @@ const Testing = memo(({ userInfo, setQuestionResult }) => {
   };
 
   useEffect(() => {
+    alert(isLoading);
     if (isLoading) return;
     dispatch({ type: 'DATA_FETCH', payload: data });
   }, [data, isLoading]);
