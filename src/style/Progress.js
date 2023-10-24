@@ -8,6 +8,7 @@ export const PercentWrapper = styled.div`
   box-sizing: border-box;
   padding: 4px 5px;
   overflow: hidden;
+  flex: 0 0 18px;
 `;
 
 export const PercentGauge = styled.div`

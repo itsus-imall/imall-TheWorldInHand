@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
     font-weight: 500;
   }
   & > p {
-    font-size: var(--font-size-sm);
+    font-size: 0.8rem;
     line-height: 2;
   }
 `;

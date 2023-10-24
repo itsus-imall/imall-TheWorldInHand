@@ -1,6 +1,5 @@
 import { memo, useEffect, useReducer, useState } from 'react';
 import { Outlet, useMatch, useNavigate } from 'react-router-dom';
-import { useQuery } from 'react-query';
 import { getQuestion } from '../../services/apis';
 
 import * as S from './styled';
@@ -15,7 +14,6 @@ const Testing = memo(({ userInfo, setQuestionResult }) => {
   const howImallMatch = useMatch('testing/howImall');
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [checkedInputValues, setCheckedInputValues] = useState([]);
-  const { isLoading, data } = useQuery(['question'], getQuestion);
   const [{ count, values, history }, dispatch] = useReducer(
     questionReducer,
     initalState,
@@ -105,10 +103,12 @@ const Testing = memo(({ userInfo, setQuestionResult }) => {
   };
 
   useEffect(() => {
-    alert(isLoading);
-    if (isLoading) return;
-    dispatch({ type: 'DATA_FETCH', payload: data });
-  }, [data, isLoading]);
+    const fetchData = async () => {
+      const data = await getQuestion();
+      dispatch({ type: 'DATA_FETCH', payload: data });
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (!history[count]) return;

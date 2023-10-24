@@ -3,9 +3,9 @@ import { InputWrapper } from '../Manufacturer/styled';
 import { TestWrapper } from '../styled';
 
 export const ModelWrapper = styled(TestWrapper)`
-  width: calc(100% - 3.5rem);
+  width: calc(100% - 2.5rem);
   border-radius: 15px;
-  padding: var(--wrapper-padding);
+  padding: 0.8rem;
   background: #fff;
   gap: 0.5rem;
   position: relative;
@@ -17,7 +17,7 @@ export const ModelImgWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  img {
+  & > img {
     width: 30%;
     flex: 0 0 10%;
   }
@@ -28,6 +28,7 @@ export const ModelImgWrapper = styled.div`
     border-radius: 0.5rem;
     font-weight: bold;
     position: relative;
+    font-size: 0.8rem;
   }
   p:after {
     content: '';

@@ -17,12 +17,7 @@ const GlobalStyle = createGlobalStyle`
   --input-checked-bg-color: #f3fff3;
   --input-checked-border-color: #40c89a;
 }
-@media screen and (max-width: 400px) {
-  :root {
-    --font-size-root: 12px;
-  }
-}
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 300px) {
   :root {
     --font-size-root: 18px;
   }

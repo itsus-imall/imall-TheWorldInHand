@@ -28,7 +28,6 @@ const Result = memo(({ userInfo }) => {
   const [productsMore, setProductsMore] = useState(false);
   const [loading, setLoading] = useState(true);
   const suggestionRef = useRef(null);
-
   const resultHandler = useCallback(async () => {
     const data = await getMemo(userInfo, history);
     if (
@@ -54,7 +53,7 @@ const Result = memo(({ userInfo }) => {
     setProductsMore(result.length >= 4 ? false : true);
     setProductsInfo(result);
     setLoading(false);
-  }, []);
+  }, [history, userInfo]);
 
   const reTestHandler = () => navigate('/');
   const suggestionScrollHandler = () => {
@@ -69,16 +68,16 @@ const Result = memo(({ userInfo }) => {
   };
   useEffect(() => {
     history && userInfo ? resultHandler() : navigate('/');
-  }, []);
+  }, [history, navigate, resultHandler, userInfo]);
 
   if (loading && !productsInfo && !review) return <Loading count='2' />;
 
   return (
-    <Wrapper>
+    <Wrapper style={{ padding: '0' }}>
       <S.ResultWrapper>
         <div className='title-wrapper'>
           <h2>
-            고객님의 손에 최적화된
+            고객님의 손에 <span>최적화</span>된
             <br />
             상품을 들고 왔어요!
           </h2>
@@ -121,10 +120,11 @@ const Result = memo(({ userInfo }) => {
               <p className='date'>{review.date.split('T')[0]}</p>
             </div>
             <div className='content-wrapper'>
-              <div className='content'>{review.content}</div>
               <div className='img'>
                 <img src={review.img} alt='review' />
               </div>
+              <p className='product-name'>{review.productName}</p>
+              <div className='content'>{review.content}</div>
             </div>
           </div>
         </S.ReviewWrapper>

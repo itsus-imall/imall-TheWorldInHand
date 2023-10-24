@@ -269,14 +269,14 @@ const threeQuestionObj = {
   },
   두께: {
     contents: {
-      title: '내가 선호하는\n두께를 선택해 주세요',
+      title: '안전을 위한\n두께를 선택해 주세요',
       subTitle: '한 가지만 선택해 주세요.',
     },
     questions: [
-      { value: '뛰어난 내구성과 충격완화가 장점인 소재' },
-      { value: '얇은 두께로 슬림한 소재' },
-      { value: '풀커버 보호로 높은 충격에도 강한 소재' },
-      { value: '지문 방지가 되는 매트한 소재' },
+      { value: '뛰어난 내구성과 안정적인 핏' },
+      { value: '얇은 두께로 슬림함' },
+      { value: '풀커버 보호로 완벽한 충격 흡수' },
+      { value: '지문 방지가 되는 매트함' },
     ],
     nextChecked: 1,
     filter: true,
@@ -286,7 +286,7 @@ const threeQuestionObj = {
       title: '필름에 원하는 보호기능을\n선택해 주세요!',
       subTitle: '한 가지씩 선택해 주세요.',
     },
-    questions: [{ value: '필름 기능' }, { value: '자주 떨어트리나요?' }],
+    questions: [{ value: '필름의 기능' }, { value: '떨어트림의 빈도' }],
     nextChecked: 2,
     filter: true,
   },

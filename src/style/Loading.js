@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   left: 0;
   background: var(--background-color);
   width: 100%;
-  height: calc(var(--vh, 1vh) * 100 - 44px);
+  height: calc(100% - 50px);
   z-index: 99;
   padding: var(--wrapper-padding);
   display: flex;
@@ -19,7 +19,7 @@ export const Wrapper = styled.div`
     width: 50%;
   }
   p {
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: #fff;
   }
 `;

@@ -18,7 +18,6 @@ const Home = React.memo(({ userInfo, setUserInfo }) => {
       setUserInfo({ userId: event.data.id, type: event.data.type }); // 아이프레임 실제
       window.removeEventListener('message', getUserInfoHandler);
     }
-    
   }, []);
 
   const loginHandler = () => {

@@ -5,7 +5,7 @@ import { InputWrapper } from './Manufacturer/styled';
 export const Wrapper = styled(HomeWrapper)`
   justify-content: flex-start;
   padding-bottom: calc(var(--wrapper-padding) + 70px);
-  gap: 1.5rem;
+  gap: 1rem;
 `;
 
 export const NextButtonWrapper = styled.div`
@@ -62,7 +62,7 @@ export const TestWrapper = styled.div`
   justify-content: space-between;
   align-items: baseline;
   max-width: 500px;
-  overflow: scroll;
+  overflow-y: scroll;
   gap: 1rem;
 `;
 

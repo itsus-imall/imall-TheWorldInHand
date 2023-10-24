@@ -42,7 +42,7 @@ export const TitleWrapper = styled.div`
     font-size: var(--font-size-big);
   }
   h3 {
-    font-size: var(--font-size-sm);
+    font-size: 0.8rem;
     color: var(--text-color-purple);
     font-weight: 500;
   }
@@ -89,11 +89,11 @@ export const ButtonWrapper = styled.div`
   flex-direction: column;
   gap: calc(var(--vh, 1vh) * 3);
   h2 {
-    font-size: var(--font-size-md);
+    font-size: 0.9rem;
     font-weight: 500;
   }
   p {
-    font-size: var(--font-size-sm);
+    font-size: 0.7rem;
     color: var(--text-color-purple);
     span {
       text-decoration: underline;

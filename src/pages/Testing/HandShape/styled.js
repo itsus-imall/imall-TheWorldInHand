@@ -23,13 +23,12 @@ export const ShapeInputWrapper = styled(InputWrapper)`
       text-align: left;
       word-break: keep-all;
       strong {
-        font-size: 1rem;
+        font-size: 0.8rem;
         font-weight: 400;
         transition: 0.3s;
-        color: #5a1de7;
       }
       span {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         color: #7f7f7f;
       }
     }
