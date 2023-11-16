@@ -3,7 +3,13 @@ import styled from 'styled-components';
 export const ResultWrapper = styled.section`
   width: 100%;
   overflow-y: scroll;
-  background: #fff;
+  background: linear-gradient(
+    to bottom right,
+    #4e0183,
+    #752fcf,
+    #9c5cf0,
+    #9c5cf0
+  );
   color: #000;
   padding: 1rem;
   padding-top: 3rem;
@@ -11,6 +17,9 @@ export const ResultWrapper = styled.section`
   display: flex;
   flex-direction: column;
   gap: 3.5rem;
+  * {
+    color: #fff;
+  }
   & .title-wrapper {
     text-align: center;
     h2 {
@@ -87,7 +96,7 @@ export const ReviewWrapper = styled.section`
   & > div {
     padding: 1rem;
     box-sizing: border-box;
-    background: #e9ecef;
+    background: rgba(0, 0, 0, 0.25);
     border-radius: 1rem;
     .title {
       display: flex;
@@ -104,7 +113,7 @@ export const ReviewWrapper = styled.section`
           margin-bottom: 10px;
         }
         .rating {
-          color: var(--background-color);
+          color: #ffc700de;
           font-size: 0.8rem;
         }
         & > * {
@@ -120,7 +129,6 @@ export const ReviewWrapper = styled.section`
     flex-direction: column;
     .product-name {
       font-size: 0.8rem;
-      color: #888;
       &::before {
         content: '상품명';
         font-weight: bold;
@@ -129,7 +137,7 @@ export const ReviewWrapper = styled.section`
     }
     .content {
       flex: 0 0 calc(60% - 0.5rem);
-      line-height: 1.3;
+      line-height: 1.5;
       font-size: 0.8rem;
     }
     .img {
@@ -156,7 +164,7 @@ export const SuggestionWrapper = styled.section`
     padding-left: 0.3rem;
   }
   & > div {
-    background: #e9ecef;
+    background: rgba(0, 0, 0, 0.25);
     border-radius: 1rem;
     margin-top: 1rem;
     box-sizing: border-box;
@@ -216,14 +224,57 @@ export const RetestWrapper = styled.section`
     line-height: 1.2;
     font-size: 1.2rem;
   }
-  button {
+  a {
     padding: 1rem 2rem;
     border: 0;
-    background: var(--input-checked-border-color);
+    background: var(--background-color);
     color: #fff;
     border-radius: 2rem;
     margin: 1rem 0;
     font-size: 1rem;
     font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
   }
+`;
+
+export const RobotWrapper = styled.section`
+  .content-wrapper {
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 1rem;
+    p {
+      font-size: 0.8rem;
+      position: relative;
+      text-align: left;
+      margin-bottom: 1rem;
+      padding-left: 1rem;
+      line-height: 1.5;
+      &:before {
+        content: '・';
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+`;
+
+export const PointWrapper = styled.section`
+  font-size: 0.8rem;
+  line-height: 1.5;
+  background: rgba(0, 0, 0, 0.7);
+  box-sizing: border-box;
+  padding: 0.5rem 0;
+  border-radius: 1rem;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  z-index: 5;
 `;

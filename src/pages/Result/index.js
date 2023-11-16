@@ -19,6 +19,7 @@ import {
 } from '../../utils/filter';
 
 import { ReactComponent as GraphSVG } from '../../svg/graph.svg';
+import { getRobotResult } from '../../utils/result';
 
 const Result = memo(({ userInfo }) => {
   const { state: history } = useLocation();
@@ -27,6 +28,8 @@ const Result = memo(({ userInfo }) => {
   const [review, setReview] = useState(null);
   const [productsMore, setProductsMore] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [robot, setRobot] = useState(null);
+  const [pointModal, setPointModal] = useState(false);
   const suggestionRef = useRef(null);
   const resultHandler = useCallback(async () => {
     const data = await getMemo(userInfo, history);
@@ -37,7 +40,11 @@ const Result = memo(({ userInfo }) => {
       )
     ) {
       updateMemo(userInfo, history);
+    } else {
+      setPointModal(true);
+      setTimeout(() => setPointModal(false), 5000);
     }
+    setRobot(getRobotResult(history));
     const suggestionProducts = await suggestionProductsFilter(history);
     const productsInfo = await getProductsInfo(suggestionProducts);
     const productsRank = sumTotalSales(
@@ -54,8 +61,6 @@ const Result = memo(({ userInfo }) => {
     setProductsInfo(result);
     setLoading(false);
   }, [history, userInfo]);
-
-  const reTestHandler = () => navigate('/');
   const suggestionScrollHandler = () => {
     suggestionRef.current.scrollIntoView({ behavior: 'smooth' });
   };
@@ -75,11 +80,33 @@ const Result = memo(({ userInfo }) => {
   return (
     <Wrapper style={{ padding: '0' }}>
       <S.ResultWrapper>
+        {pointModal ? (
+          <S.PointWrapper>
+            <p>
+              테스트에 참여해주셔서 감사합니다.
+              <br />
+              적립금 1,000원 적립되셨습니다.
+            </p>
+          </S.PointWrapper>
+        ) : null}
+        <S.RobotWrapper>
+          <img
+            src={`/images/로봇/캐릭터_${robot.robot}.png`}
+            alt={robot.robot}
+          />
+          <div className='content-wrapper'>
+            {robot.contents.map(content =>
+              content.map(con => {
+                return <p>{con}</p>;
+              }),
+            )}
+          </div>
+        </S.RobotWrapper>
         <div className='title-wrapper'>
           <h2>
-            고객님의 손에 <span>최적화</span>된
+            고객님! 결과에 맞춰
             <br />
-            상품을 들고 왔어요!
+            AI가 추천드리는 제품이예요.
           </h2>
           <button onClick={suggestionScrollHandler}>
             어떻게 추천되었나요?
@@ -96,7 +123,7 @@ const Result = memo(({ userInfo }) => {
                   onClick={productClickHandler}
                 >
                   <img
-                    src={product.detail_image}
+                    src={product.list_image}
                     alt={product.custom_product_code}
                   />
                   <p>{product.product_name}</p>
@@ -120,9 +147,11 @@ const Result = memo(({ userInfo }) => {
               <p className='date'>{review.date.split('T')[0]}</p>
             </div>
             <div className='content-wrapper'>
-              <div className='img'>
-                <img src={review.img} alt='review' />
-              </div>
+              {review.img ? (
+                <div className='img'>
+                  <img src={review.img} alt='review' />
+                </div>
+              ) : null}
               <p className='product-name'>{review.productName}</p>
               <div className='content'>{review.content}</div>
             </div>
@@ -160,12 +189,8 @@ const Result = memo(({ userInfo }) => {
           </div>
         </S.SuggestionWrapper>
         <S.RetestWrapper>
-          <h2>
-            테스트를 다시 진행하고
-            <br />
-            싶으신가요?
-          </h2>
-          <button onClick={reTestHandler}>테스트 다시 하기</button>
+          <h2>테스트를 다시 진행하고 싶으신가요?</h2>
+          <a href='/'>테스트 다시 하기</a>
         </S.RetestWrapper>
       </S.ResultWrapper>
     </Wrapper>

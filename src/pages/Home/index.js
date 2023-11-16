@@ -10,16 +10,16 @@ const Home = React.memo(({ userInfo, setUserInfo }) => {
       window.removeEventListener('message', getUserInfoHandler);
     }
     if (
-      event.origin === 'https://youngwuk2.cafe24.com' ||
-      event.origin === 'https://i-m-all.com' ||
-      event.origin === 'https://m.i-m-all.com' ||
-      event.origin === 'https://www.i-m-all.com'
+      (event.origin === 'https://youngwuk2.cafe24.com' ||
+        event.origin === 'https://i-m-all.com' ||
+        event.origin === 'https://m.i-m-all.com' ||
+        event.origin === 'https://www.i-m-all.com') &&
+      event.data.id
     ) {
       setUserInfo({ userId: event.data.id, type: event.data.type }); // 아이프레임 실제
       window.removeEventListener('message', getUserInfoHandler);
     }
   }, []);
-
   const loginHandler = () => {
     window.parent.postMessage({ status: 'login-check', value: 'login' }, '*');
   };
